@@ -26,7 +26,6 @@ Partial Class MainForm
         Me.ExitButton = New System.Windows.Forms.Button()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ComponentValuesGroupBox = New System.Windows.Forms.GroupBox()
         Me.VGenValueLabel = New System.Windows.Forms.Label()
         Me.VGenValueTextBox = New System.Windows.Forms.TextBox()
@@ -51,16 +50,26 @@ Partial Class MainForm
         Me.L1NotationComboBox = New System.Windows.Forms.ComboBox()
         Me.ValueLabel = New System.Windows.Forms.Label()
         Me.PowerLabel = New System.Windows.Forms.Label()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CalculateButton = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.VGenFrequencyLabel = New System.Windows.Forms.Label()
+        Me.VGenAmplitudeLabel = New System.Windows.Forms.Label()
+        Me.RGenSchematicLabel = New System.Windows.Forms.Label()
+        Me.RwSchematicLabel = New System.Windows.Forms.Label()
+        Me.C1SchematicLabel = New System.Windows.Forms.Label()
+        Me.C2SchematicLabel = New System.Windows.Forms.Label()
+        Me.R1SchematicLabel = New System.Windows.Forms.Label()
+        Me.L1SchematicLabel = New System.Windows.Forms.Label()
         Me.ComponentValuesGroupBox.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ExitButton
         '
-        Me.ExitButton.Location = New System.Drawing.Point(483, 385)
+        Me.ExitButton.Location = New System.Drawing.Point(483, 582)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(92, 53)
-        Me.ExitButton.TabIndex = 1
+        Me.ExitButton.TabIndex = 2
         Me.ExitButton.Text = "E&xit"
         Me.ExitButton.UseVisualStyleBackColor = True
         '
@@ -71,17 +80,6 @@ Partial Class MainForm
         Me.MenuStrip.Size = New System.Drawing.Size(584, 24)
         Me.MenuStrip.TabIndex = 1
         Me.MenuStrip.Text = "MenuStrip1"
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.BackgroundImage = Global.CircuitSolver.My.Resources.Resources.Screenshot_2025_02_14_092818
-        Me.PictureBox1.Location = New System.Drawing.Point(12, 27)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(563, 302)
-        Me.PictureBox1.TabIndex = 2
-        Me.PictureBox1.TabStop = False
         '
         'ComponentValuesGroupBox
         '
@@ -308,11 +306,112 @@ Partial Class MainForm
         Me.PowerLabel.TabIndex = 14
         Me.PowerLabel.Text = "Power"
         '
+        'CalculateButton
+        '
+        Me.CalculateButton.Location = New System.Drawing.Point(12, 582)
+        Me.CalculateButton.Name = "CalculateButton"
+        Me.CalculateButton.Size = New System.Drawing.Size(206, 53)
+        Me.CalculateButton.TabIndex = 1
+        Me.CalculateButton.Text = "C&alculate"
+        Me.CalculateButton.UseVisualStyleBackColor = True
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox1.BackgroundImage = Global.CircuitSolver.My.Resources.Resources.Screenshot_2025_02_14_0928181
+        Me.PictureBox1.Location = New System.Drawing.Point(12, 27)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(563, 302)
+        Me.PictureBox1.TabIndex = 2
+        Me.PictureBox1.TabStop = False
+        '
+        'VGenFrequencyLabel
+        '
+        Me.VGenFrequencyLabel.AutoSize = True
+        Me.VGenFrequencyLabel.Location = New System.Drawing.Point(27, 201)
+        Me.VGenFrequencyLabel.Name = "VGenFrequencyLabel"
+        Me.VGenFrequencyLabel.Size = New System.Drawing.Size(27, 13)
+        Me.VGenFrequencyLabel.TabIndex = 3
+        Me.VGenFrequencyLabel.Text = "~Hz"
+        '
+        'VGenAmplitudeLabel
+        '
+        Me.VGenAmplitudeLabel.AutoSize = True
+        Me.VGenAmplitudeLabel.Location = New System.Drawing.Point(27, 185)
+        Me.VGenAmplitudeLabel.Name = "VGenAmplitudeLabel"
+        Me.VGenAmplitudeLabel.Size = New System.Drawing.Size(33, 13)
+        Me.VGenAmplitudeLabel.TabIndex = 3
+        Me.VGenAmplitudeLabel.Text = "~Vpp"
+        '
+        'RGenSchematicLabel
+        '
+        Me.RGenSchematicLabel.AutoSize = True
+        Me.RGenSchematicLabel.Location = New System.Drawing.Point(133, 161)
+        Me.RGenSchematicLabel.Name = "RGenSchematicLabel"
+        Me.RGenSchematicLabel.Size = New System.Drawing.Size(23, 13)
+        Me.RGenSchematicLabel.TabIndex = 3
+        Me.RGenSchematicLabel.Text = "~Ω"
+        '
+        'RwSchematicLabel
+        '
+        Me.RwSchematicLabel.AutoSize = True
+        Me.RwSchematicLabel.Location = New System.Drawing.Point(452, 280)
+        Me.RwSchematicLabel.Name = "RwSchematicLabel"
+        Me.RwSchematicLabel.Size = New System.Drawing.Size(23, 13)
+        Me.RwSchematicLabel.TabIndex = 3
+        Me.RwSchematicLabel.Text = "~Ω"
+        '
+        'C1SchematicLabel
+        '
+        Me.C1SchematicLabel.AutoSize = True
+        Me.C1SchematicLabel.Location = New System.Drawing.Point(288, 161)
+        Me.C1SchematicLabel.Name = "C1SchematicLabel"
+        Me.C1SchematicLabel.Size = New System.Drawing.Size(20, 13)
+        Me.C1SchematicLabel.TabIndex = 3
+        Me.C1SchematicLabel.Text = "~F"
+        '
+        'C2SchematicLabel
+        '
+        Me.C2SchematicLabel.AutoSize = True
+        Me.C2SchematicLabel.Location = New System.Drawing.Point(359, 242)
+        Me.C2SchematicLabel.Name = "C2SchematicLabel"
+        Me.C2SchematicLabel.Size = New System.Drawing.Size(20, 13)
+        Me.C2SchematicLabel.TabIndex = 3
+        Me.C2SchematicLabel.Text = "~F"
+        '
+        'R1SchematicLabel
+        '
+        Me.R1SchematicLabel.AutoSize = True
+        Me.R1SchematicLabel.Location = New System.Drawing.Point(215, 161)
+        Me.R1SchematicLabel.Name = "R1SchematicLabel"
+        Me.R1SchematicLabel.Size = New System.Drawing.Size(23, 13)
+        Me.R1SchematicLabel.TabIndex = 4
+        Me.R1SchematicLabel.Text = "~Ω"
+        '
+        'L1SchematicLabel
+        '
+        Me.L1SchematicLabel.AutoSize = True
+        Me.L1SchematicLabel.Location = New System.Drawing.Point(442, 226)
+        Me.L1SchematicLabel.Name = "L1SchematicLabel"
+        Me.L1SchematicLabel.Size = New System.Drawing.Size(20, 13)
+        Me.L1SchematicLabel.TabIndex = 5
+        Me.L1SchematicLabel.Text = "~L"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(584, 627)
+        Me.ClientSize = New System.Drawing.Size(584, 643)
+        Me.Controls.Add(Me.L1SchematicLabel)
+        Me.Controls.Add(Me.R1SchematicLabel)
+        Me.Controls.Add(Me.C2SchematicLabel)
+        Me.Controls.Add(Me.C1SchematicLabel)
+        Me.Controls.Add(Me.RwSchematicLabel)
+        Me.Controls.Add(Me.RGenSchematicLabel)
+        Me.Controls.Add(Me.VGenAmplitudeLabel)
+        Me.Controls.Add(Me.VGenFrequencyLabel)
+        Me.Controls.Add(Me.CalculateButton)
         Me.Controls.Add(Me.ComponentValuesGroupBox)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.ExitButton)
@@ -322,9 +421,9 @@ Partial Class MainForm
         Me.Name = "MainForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Circuit Solver"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ComponentValuesGroupBox.ResumeLayout(False)
         Me.ComponentValuesGroupBox.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -358,4 +457,13 @@ Partial Class MainForm
     Friend WithEvents C2NotationComboBox As ComboBox
     Friend WithEvents PowerLabel As Label
     Friend WithEvents ValueLabel As Label
+    Friend WithEvents CalculateButton As Button
+    Friend WithEvents VGenFrequencyLabel As Label
+    Friend WithEvents VGenAmplitudeLabel As Label
+    Friend WithEvents RGenSchematicLabel As Label
+    Friend WithEvents RwSchematicLabel As Label
+    Friend WithEvents C1SchematicLabel As Label
+    Friend WithEvents C2SchematicLabel As Label
+    Friend WithEvents R1SchematicLabel As Label
+    Friend WithEvents L1SchematicLabel As Label
 End Class

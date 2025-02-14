@@ -27,8 +27,8 @@ Partial Class MainForm
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.ComponentValuesGroupBox = New System.Windows.Forms.GroupBox()
-        Me.VGenValueLabel = New System.Windows.Forms.Label()
-        Me.VGenValueTextBox = New System.Windows.Forms.TextBox()
+        Me.VGenAValueLabel = New System.Windows.Forms.Label()
+        Me.VGenAValueTextBox = New System.Windows.Forms.TextBox()
         Me.RGenValueLabel = New System.Windows.Forms.Label()
         Me.RGenValueTextBox = New System.Windows.Forms.TextBox()
         Me.R1ValueLabel = New System.Windows.Forms.Label()
@@ -41,7 +41,7 @@ Partial Class MainForm
         Me.RwValueLabel = New System.Windows.Forms.Label()
         Me.C2ValueTextBox = New System.Windows.Forms.TextBox()
         Me.RwValueTextBox = New System.Windows.Forms.TextBox()
-        Me.VGenNotationComboBox = New System.Windows.Forms.ComboBox()
+        Me.VGenANotationComboBox = New System.Windows.Forms.ComboBox()
         Me.RGenNotationComboBox = New System.Windows.Forms.ComboBox()
         Me.R1NotationComboBox = New System.Windows.Forms.ComboBox()
         Me.RwNotationComboBox = New System.Windows.Forms.ComboBox()
@@ -60,6 +60,9 @@ Partial Class MainForm
         Me.C2SchematicLabel = New System.Windows.Forms.Label()
         Me.R1SchematicLabel = New System.Windows.Forms.Label()
         Me.L1SchematicLabel = New System.Windows.Forms.Label()
+        Me.VGenFValueLabel = New System.Windows.Forms.Label()
+        Me.VGenFValueTextBox = New System.Windows.Forms.TextBox()
+        Me.VGenFNotationComboBox = New System.Windows.Forms.ComboBox()
         Me.ComponentValuesGroupBox.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -91,7 +94,8 @@ Partial Class MainForm
         Me.ComponentValuesGroupBox.Controls.Add(Me.L1NotationComboBox)
         Me.ComponentValuesGroupBox.Controls.Add(Me.C2NotationComboBox)
         Me.ComponentValuesGroupBox.Controls.Add(Me.C1NotationComboBox)
-        Me.ComponentValuesGroupBox.Controls.Add(Me.VGenNotationComboBox)
+        Me.ComponentValuesGroupBox.Controls.Add(Me.VGenFNotationComboBox)
+        Me.ComponentValuesGroupBox.Controls.Add(Me.VGenANotationComboBox)
         Me.ComponentValuesGroupBox.Controls.Add(Me.RwValueTextBox)
         Me.ComponentValuesGroupBox.Controls.Add(Me.C1ValueTextBox)
         Me.ComponentValuesGroupBox.Controls.Add(Me.C2ValueTextBox)
@@ -104,8 +108,10 @@ Partial Class MainForm
         Me.ComponentValuesGroupBox.Controls.Add(Me.L1ValueLabel)
         Me.ComponentValuesGroupBox.Controls.Add(Me.R1ValueTextBox)
         Me.ComponentValuesGroupBox.Controls.Add(Me.R1ValueLabel)
-        Me.ComponentValuesGroupBox.Controls.Add(Me.VGenValueTextBox)
-        Me.ComponentValuesGroupBox.Controls.Add(Me.VGenValueLabel)
+        Me.ComponentValuesGroupBox.Controls.Add(Me.VGenFValueTextBox)
+        Me.ComponentValuesGroupBox.Controls.Add(Me.VGenFValueLabel)
+        Me.ComponentValuesGroupBox.Controls.Add(Me.VGenAValueTextBox)
+        Me.ComponentValuesGroupBox.Controls.Add(Me.VGenAValueLabel)
         Me.ComponentValuesGroupBox.Location = New System.Drawing.Point(12, 338)
         Me.ComponentValuesGroupBox.Name = "ComponentValuesGroupBox"
         Me.ComponentValuesGroupBox.Size = New System.Drawing.Size(206, 238)
@@ -113,26 +119,26 @@ Partial Class MainForm
         Me.ComponentValuesGroupBox.TabStop = False
         Me.ComponentValuesGroupBox.Text = "Component Values"
         '
-        'VGenValueLabel
+        'VGenAValueLabel
         '
-        Me.VGenValueLabel.AutoSize = True
-        Me.VGenValueLabel.Location = New System.Drawing.Point(15, 47)
-        Me.VGenValueLabel.Name = "VGenValueLabel"
-        Me.VGenValueLabel.Size = New System.Drawing.Size(34, 13)
-        Me.VGenValueLabel.TabIndex = 0
-        Me.VGenValueLabel.Text = "VGen"
+        Me.VGenAValueLabel.AutoSize = True
+        Me.VGenAValueLabel.Location = New System.Drawing.Point(15, 32)
+        Me.VGenAValueLabel.Name = "VGenAValueLabel"
+        Me.VGenAValueLabel.Size = New System.Drawing.Size(41, 13)
+        Me.VGenAValueLabel.TabIndex = 0
+        Me.VGenAValueLabel.Text = "VGenA"
         '
-        'VGenValueTextBox
+        'VGenAValueTextBox
         '
-        Me.VGenValueTextBox.Location = New System.Drawing.Point(55, 44)
-        Me.VGenValueTextBox.Name = "VGenValueTextBox"
-        Me.VGenValueTextBox.Size = New System.Drawing.Size(84, 20)
-        Me.VGenValueTextBox.TabIndex = 0
+        Me.VGenAValueTextBox.Location = New System.Drawing.Point(55, 29)
+        Me.VGenAValueTextBox.Name = "VGenAValueTextBox"
+        Me.VGenAValueTextBox.Size = New System.Drawing.Size(84, 20)
+        Me.VGenAValueTextBox.TabIndex = 0
         '
         'RGenValueLabel
         '
         Me.RGenValueLabel.AutoSize = True
-        Me.RGenValueLabel.Location = New System.Drawing.Point(15, 73)
+        Me.RGenValueLabel.Location = New System.Drawing.Point(15, 84)
         Me.RGenValueLabel.Name = "RGenValueLabel"
         Me.RGenValueLabel.Size = New System.Drawing.Size(35, 13)
         Me.RGenValueLabel.TabIndex = 0
@@ -140,15 +146,15 @@ Partial Class MainForm
         '
         'RGenValueTextBox
         '
-        Me.RGenValueTextBox.Location = New System.Drawing.Point(55, 70)
+        Me.RGenValueTextBox.Location = New System.Drawing.Point(55, 81)
         Me.RGenValueTextBox.Name = "RGenValueTextBox"
         Me.RGenValueTextBox.Size = New System.Drawing.Size(84, 20)
-        Me.RGenValueTextBox.TabIndex = 2
+        Me.RGenValueTextBox.TabIndex = 4
         '
         'R1ValueLabel
         '
         Me.R1ValueLabel.AutoSize = True
-        Me.R1ValueLabel.Location = New System.Drawing.Point(15, 99)
+        Me.R1ValueLabel.Location = New System.Drawing.Point(15, 110)
         Me.R1ValueLabel.Name = "R1ValueLabel"
         Me.R1ValueLabel.Size = New System.Drawing.Size(21, 13)
         Me.R1ValueLabel.TabIndex = 0
@@ -156,15 +162,15 @@ Partial Class MainForm
         '
         'R1ValueTextBox
         '
-        Me.R1ValueTextBox.Location = New System.Drawing.Point(55, 96)
+        Me.R1ValueTextBox.Location = New System.Drawing.Point(55, 107)
         Me.R1ValueTextBox.Name = "R1ValueTextBox"
         Me.R1ValueTextBox.Size = New System.Drawing.Size(84, 20)
-        Me.R1ValueTextBox.TabIndex = 4
+        Me.R1ValueTextBox.TabIndex = 6
         '
         'C1ValueLabel
         '
         Me.C1ValueLabel.AutoSize = True
-        Me.C1ValueLabel.Location = New System.Drawing.Point(15, 125)
+        Me.C1ValueLabel.Location = New System.Drawing.Point(15, 136)
         Me.C1ValueLabel.Name = "C1ValueLabel"
         Me.C1ValueLabel.Size = New System.Drawing.Size(20, 13)
         Me.C1ValueLabel.TabIndex = 0
@@ -172,15 +178,15 @@ Partial Class MainForm
         '
         'C1ValueTextBox
         '
-        Me.C1ValueTextBox.Location = New System.Drawing.Point(55, 122)
+        Me.C1ValueTextBox.Location = New System.Drawing.Point(55, 133)
         Me.C1ValueTextBox.Name = "C1ValueTextBox"
         Me.C1ValueTextBox.Size = New System.Drawing.Size(84, 20)
-        Me.C1ValueTextBox.TabIndex = 6
+        Me.C1ValueTextBox.TabIndex = 8
         '
         'L1ValueLabel
         '
         Me.L1ValueLabel.AutoSize = True
-        Me.L1ValueLabel.Location = New System.Drawing.Point(15, 177)
+        Me.L1ValueLabel.Location = New System.Drawing.Point(15, 188)
         Me.L1ValueLabel.Name = "L1ValueLabel"
         Me.L1ValueLabel.Size = New System.Drawing.Size(19, 13)
         Me.L1ValueLabel.TabIndex = 0
@@ -188,15 +194,15 @@ Partial Class MainForm
         '
         'L1ValueTextBox
         '
-        Me.L1ValueTextBox.Location = New System.Drawing.Point(55, 174)
+        Me.L1ValueTextBox.Location = New System.Drawing.Point(55, 185)
         Me.L1ValueTextBox.Name = "L1ValueTextBox"
         Me.L1ValueTextBox.Size = New System.Drawing.Size(84, 20)
-        Me.L1ValueTextBox.TabIndex = 10
+        Me.L1ValueTextBox.TabIndex = 12
         '
         'C2ValueLabel
         '
         Me.C2ValueLabel.AutoSize = True
-        Me.C2ValueLabel.Location = New System.Drawing.Point(15, 151)
+        Me.C2ValueLabel.Location = New System.Drawing.Point(15, 162)
         Me.C2ValueLabel.Name = "C2ValueLabel"
         Me.C2ValueLabel.Size = New System.Drawing.Size(20, 13)
         Me.C2ValueLabel.TabIndex = 0
@@ -205,7 +211,7 @@ Partial Class MainForm
         'RwValueLabel
         '
         Me.RwValueLabel.AutoSize = True
-        Me.RwValueLabel.Location = New System.Drawing.Point(15, 203)
+        Me.RwValueLabel.Location = New System.Drawing.Point(15, 214)
         Me.RwValueLabel.Name = "RwValueLabel"
         Me.RwValueLabel.Size = New System.Drawing.Size(23, 13)
         Me.RwValueLabel.TabIndex = 0
@@ -213,85 +219,85 @@ Partial Class MainForm
         '
         'C2ValueTextBox
         '
-        Me.C2ValueTextBox.Location = New System.Drawing.Point(55, 148)
+        Me.C2ValueTextBox.Location = New System.Drawing.Point(55, 159)
         Me.C2ValueTextBox.Name = "C2ValueTextBox"
         Me.C2ValueTextBox.Size = New System.Drawing.Size(84, 20)
-        Me.C2ValueTextBox.TabIndex = 8
+        Me.C2ValueTextBox.TabIndex = 10
         '
         'RwValueTextBox
         '
-        Me.RwValueTextBox.Location = New System.Drawing.Point(55, 200)
+        Me.RwValueTextBox.Location = New System.Drawing.Point(55, 211)
         Me.RwValueTextBox.Name = "RwValueTextBox"
         Me.RwValueTextBox.Size = New System.Drawing.Size(84, 20)
-        Me.RwValueTextBox.TabIndex = 12
+        Me.RwValueTextBox.TabIndex = 14
         '
-        'VGenNotationComboBox
+        'VGenANotationComboBox
         '
-        Me.VGenNotationComboBox.FormattingEnabled = True
-        Me.VGenNotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3"})
-        Me.VGenNotationComboBox.Location = New System.Drawing.Point(145, 45)
-        Me.VGenNotationComboBox.Name = "VGenNotationComboBox"
-        Me.VGenNotationComboBox.Size = New System.Drawing.Size(51, 21)
-        Me.VGenNotationComboBox.TabIndex = 1
+        Me.VGenANotationComboBox.FormattingEnabled = True
+        Me.VGenANotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3"})
+        Me.VGenANotationComboBox.Location = New System.Drawing.Point(145, 30)
+        Me.VGenANotationComboBox.Name = "VGenANotationComboBox"
+        Me.VGenANotationComboBox.Size = New System.Drawing.Size(51, 21)
+        Me.VGenANotationComboBox.TabIndex = 1
         '
         'RGenNotationComboBox
         '
         Me.RGenNotationComboBox.FormattingEnabled = True
         Me.RGenNotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3"})
-        Me.RGenNotationComboBox.Location = New System.Drawing.Point(145, 69)
+        Me.RGenNotationComboBox.Location = New System.Drawing.Point(145, 80)
         Me.RGenNotationComboBox.Name = "RGenNotationComboBox"
         Me.RGenNotationComboBox.Size = New System.Drawing.Size(51, 21)
-        Me.RGenNotationComboBox.TabIndex = 3
+        Me.RGenNotationComboBox.TabIndex = 5
         '
         'R1NotationComboBox
         '
         Me.R1NotationComboBox.FormattingEnabled = True
         Me.R1NotationComboBox.Items.AddRange(New Object() {"x10^6", "x10^3", "x10^0", "x10^-3"})
-        Me.R1NotationComboBox.Location = New System.Drawing.Point(145, 95)
+        Me.R1NotationComboBox.Location = New System.Drawing.Point(145, 106)
         Me.R1NotationComboBox.Name = "R1NotationComboBox"
         Me.R1NotationComboBox.Size = New System.Drawing.Size(51, 21)
-        Me.R1NotationComboBox.TabIndex = 5
+        Me.R1NotationComboBox.TabIndex = 7
         '
         'RwNotationComboBox
         '
         Me.RwNotationComboBox.FormattingEnabled = True
         Me.RwNotationComboBox.Items.AddRange(New Object() {"x10^6", "x10^3", "x10^0", "x10^-3"})
-        Me.RwNotationComboBox.Location = New System.Drawing.Point(145, 200)
+        Me.RwNotationComboBox.Location = New System.Drawing.Point(145, 211)
         Me.RwNotationComboBox.Name = "RwNotationComboBox"
         Me.RwNotationComboBox.Size = New System.Drawing.Size(51, 21)
-        Me.RwNotationComboBox.TabIndex = 13
+        Me.RwNotationComboBox.TabIndex = 15
         '
         'C1NotationComboBox
         '
         Me.C1NotationComboBox.FormattingEnabled = True
         Me.C1NotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3", "x10^-6", "x10^-9", "x10^-12"})
-        Me.C1NotationComboBox.Location = New System.Drawing.Point(145, 122)
+        Me.C1NotationComboBox.Location = New System.Drawing.Point(145, 133)
         Me.C1NotationComboBox.Name = "C1NotationComboBox"
         Me.C1NotationComboBox.Size = New System.Drawing.Size(51, 21)
-        Me.C1NotationComboBox.TabIndex = 7
+        Me.C1NotationComboBox.TabIndex = 9
         '
         'C2NotationComboBox
         '
         Me.C2NotationComboBox.FormattingEnabled = True
         Me.C2NotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3", "x10^-6", "x10^-9", "x10^-12"})
-        Me.C2NotationComboBox.Location = New System.Drawing.Point(145, 148)
+        Me.C2NotationComboBox.Location = New System.Drawing.Point(145, 159)
         Me.C2NotationComboBox.Name = "C2NotationComboBox"
         Me.C2NotationComboBox.Size = New System.Drawing.Size(51, 21)
-        Me.C2NotationComboBox.TabIndex = 9
+        Me.C2NotationComboBox.TabIndex = 11
         '
         'L1NotationComboBox
         '
         Me.L1NotationComboBox.FormattingEnabled = True
         Me.L1NotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3", "x10^-6", "x10^-9", "x10^-12"})
-        Me.L1NotationComboBox.Location = New System.Drawing.Point(145, 173)
+        Me.L1NotationComboBox.Location = New System.Drawing.Point(145, 184)
         Me.L1NotationComboBox.Name = "L1NotationComboBox"
         Me.L1NotationComboBox.Size = New System.Drawing.Size(51, 21)
-        Me.L1NotationComboBox.TabIndex = 11
+        Me.L1NotationComboBox.TabIndex = 13
         '
         'ValueLabel
         '
         Me.ValueLabel.AutoSize = True
-        Me.ValueLabel.Location = New System.Drawing.Point(78, 28)
+        Me.ValueLabel.Location = New System.Drawing.Point(78, 13)
         Me.ValueLabel.Name = "ValueLabel"
         Me.ValueLabel.Size = New System.Drawing.Size(34, 13)
         Me.ValueLabel.TabIndex = 14
@@ -300,7 +306,7 @@ Partial Class MainForm
         'PowerLabel
         '
         Me.PowerLabel.AutoSize = True
-        Me.PowerLabel.Location = New System.Drawing.Point(152, 29)
+        Me.PowerLabel.Location = New System.Drawing.Point(152, 14)
         Me.PowerLabel.Name = "PowerLabel"
         Me.PowerLabel.Size = New System.Drawing.Size(37, 13)
         Me.PowerLabel.TabIndex = 14
@@ -398,6 +404,31 @@ Partial Class MainForm
         Me.L1SchematicLabel.TabIndex = 5
         Me.L1SchematicLabel.Text = "~L"
         '
+        'VGenFValueLabel
+        '
+        Me.VGenFValueLabel.AutoSize = True
+        Me.VGenFValueLabel.Location = New System.Drawing.Point(15, 58)
+        Me.VGenFValueLabel.Name = "VGenFValueLabel"
+        Me.VGenFValueLabel.Size = New System.Drawing.Size(40, 13)
+        Me.VGenFValueLabel.TabIndex = 0
+        Me.VGenFValueLabel.Text = "VGenF"
+        '
+        'VGenFValueTextBox
+        '
+        Me.VGenFValueTextBox.Location = New System.Drawing.Point(55, 55)
+        Me.VGenFValueTextBox.Name = "VGenFValueTextBox"
+        Me.VGenFValueTextBox.Size = New System.Drawing.Size(84, 20)
+        Me.VGenFValueTextBox.TabIndex = 2
+        '
+        'VGenFNotationComboBox
+        '
+        Me.VGenFNotationComboBox.FormattingEnabled = True
+        Me.VGenFNotationComboBox.Items.AddRange(New Object() {"x10^-3", "x10^0", "x10^3", "x10^6", "x10^9"})
+        Me.VGenFNotationComboBox.Location = New System.Drawing.Point(145, 56)
+        Me.VGenFNotationComboBox.Name = "VGenFNotationComboBox"
+        Me.VGenFNotationComboBox.Size = New System.Drawing.Size(51, 21)
+        Me.VGenFNotationComboBox.TabIndex = 3
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -434,7 +465,7 @@ Partial Class MainForm
     Friend WithEvents MenuStrip As MenuStrip
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents ComponentValuesGroupBox As GroupBox
-    Friend WithEvents VGenValueLabel As Label
+    Friend WithEvents VGenAValueLabel As Label
     Friend WithEvents RwValueTextBox As TextBox
     Friend WithEvents C1ValueTextBox As TextBox
     Friend WithEvents C2ValueTextBox As TextBox
@@ -447,8 +478,8 @@ Partial Class MainForm
     Friend WithEvents L1ValueLabel As Label
     Friend WithEvents R1ValueTextBox As TextBox
     Friend WithEvents R1ValueLabel As Label
-    Friend WithEvents VGenValueTextBox As TextBox
-    Friend WithEvents VGenNotationComboBox As ComboBox
+    Friend WithEvents VGenAValueTextBox As TextBox
+    Friend WithEvents VGenANotationComboBox As ComboBox
     Friend WithEvents RGenNotationComboBox As ComboBox
     Friend WithEvents RwNotationComboBox As ComboBox
     Friend WithEvents R1NotationComboBox As ComboBox
@@ -466,4 +497,7 @@ Partial Class MainForm
     Friend WithEvents C2SchematicLabel As Label
     Friend WithEvents R1SchematicLabel As Label
     Friend WithEvents L1SchematicLabel As Label
+    Friend WithEvents VGenFNotationComboBox As ComboBox
+    Friend WithEvents VGenFValueTextBox As TextBox
+    Friend WithEvents VGenFValueLabel As Label
 End Class

@@ -48,8 +48,6 @@ Partial Class MainForm
         Me.C1NotationComboBox = New System.Windows.Forms.ComboBox()
         Me.C2NotationComboBox = New System.Windows.Forms.ComboBox()
         Me.L1NotationComboBox = New System.Windows.Forms.ComboBox()
-        Me.ValueLabel = New System.Windows.Forms.Label()
-        Me.PowerLabel = New System.Windows.Forms.Label()
         Me.CalculateButton = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.VGenFrequencyLabel = New System.Windows.Forms.Label()
@@ -74,6 +72,7 @@ Partial Class MainForm
         Me.ExitButton.Size = New System.Drawing.Size(92, 53)
         Me.ExitButton.TabIndex = 2
         Me.ExitButton.Text = "E&xit"
+        Me.ToolTip.SetToolTip(Me.ExitButton, "Closes the application")
         Me.ExitButton.UseVisualStyleBackColor = True
         '
         'MenuStrip
@@ -86,8 +85,6 @@ Partial Class MainForm
         '
         'ComponentValuesGroupBox
         '
-        Me.ComponentValuesGroupBox.Controls.Add(Me.PowerLabel)
-        Me.ComponentValuesGroupBox.Controls.Add(Me.ValueLabel)
         Me.ComponentValuesGroupBox.Controls.Add(Me.RGenNotationComboBox)
         Me.ComponentValuesGroupBox.Controls.Add(Me.RwNotationComboBox)
         Me.ComponentValuesGroupBox.Controls.Add(Me.R1NotationComboBox)
@@ -118,11 +115,13 @@ Partial Class MainForm
         Me.ComponentValuesGroupBox.TabIndex = 0
         Me.ComponentValuesGroupBox.TabStop = False
         Me.ComponentValuesGroupBox.Text = "Component Values"
+        Me.ToolTip.SetToolTip(Me.ComponentValuesGroupBox, "Input the value of each varible and select a magnitude." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "The component value can " &
+        "be no greater than 999.999")
         '
         'VGenAValueLabel
         '
         Me.VGenAValueLabel.AutoSize = True
-        Me.VGenAValueLabel.Location = New System.Drawing.Point(15, 32)
+        Me.VGenAValueLabel.Location = New System.Drawing.Point(15, 28)
         Me.VGenAValueLabel.Name = "VGenAValueLabel"
         Me.VGenAValueLabel.Size = New System.Drawing.Size(41, 13)
         Me.VGenAValueLabel.TabIndex = 0
@@ -130,15 +129,16 @@ Partial Class MainForm
         '
         'VGenAValueTextBox
         '
-        Me.VGenAValueTextBox.Location = New System.Drawing.Point(55, 29)
+        Me.VGenAValueTextBox.Location = New System.Drawing.Point(55, 25)
         Me.VGenAValueTextBox.Name = "VGenAValueTextBox"
         Me.VGenAValueTextBox.Size = New System.Drawing.Size(84, 20)
         Me.VGenAValueTextBox.TabIndex = 0
+        Me.ToolTip.SetToolTip(Me.VGenAValueTextBox, "The amplitude of VGen")
         '
         'RGenValueLabel
         '
         Me.RGenValueLabel.AutoSize = True
-        Me.RGenValueLabel.Location = New System.Drawing.Point(15, 84)
+        Me.RGenValueLabel.Location = New System.Drawing.Point(15, 80)
         Me.RGenValueLabel.Name = "RGenValueLabel"
         Me.RGenValueLabel.Size = New System.Drawing.Size(35, 13)
         Me.RGenValueLabel.TabIndex = 0
@@ -146,7 +146,7 @@ Partial Class MainForm
         '
         'RGenValueTextBox
         '
-        Me.RGenValueTextBox.Location = New System.Drawing.Point(55, 81)
+        Me.RGenValueTextBox.Location = New System.Drawing.Point(55, 77)
         Me.RGenValueTextBox.Name = "RGenValueTextBox"
         Me.RGenValueTextBox.Size = New System.Drawing.Size(84, 20)
         Me.RGenValueTextBox.TabIndex = 4
@@ -154,7 +154,7 @@ Partial Class MainForm
         'R1ValueLabel
         '
         Me.R1ValueLabel.AutoSize = True
-        Me.R1ValueLabel.Location = New System.Drawing.Point(15, 110)
+        Me.R1ValueLabel.Location = New System.Drawing.Point(15, 106)
         Me.R1ValueLabel.Name = "R1ValueLabel"
         Me.R1ValueLabel.Size = New System.Drawing.Size(21, 13)
         Me.R1ValueLabel.TabIndex = 0
@@ -162,7 +162,7 @@ Partial Class MainForm
         '
         'R1ValueTextBox
         '
-        Me.R1ValueTextBox.Location = New System.Drawing.Point(55, 107)
+        Me.R1ValueTextBox.Location = New System.Drawing.Point(55, 103)
         Me.R1ValueTextBox.Name = "R1ValueTextBox"
         Me.R1ValueTextBox.Size = New System.Drawing.Size(84, 20)
         Me.R1ValueTextBox.TabIndex = 6
@@ -170,7 +170,7 @@ Partial Class MainForm
         'C1ValueLabel
         '
         Me.C1ValueLabel.AutoSize = True
-        Me.C1ValueLabel.Location = New System.Drawing.Point(15, 136)
+        Me.C1ValueLabel.Location = New System.Drawing.Point(15, 132)
         Me.C1ValueLabel.Name = "C1ValueLabel"
         Me.C1ValueLabel.Size = New System.Drawing.Size(20, 13)
         Me.C1ValueLabel.TabIndex = 0
@@ -178,7 +178,7 @@ Partial Class MainForm
         '
         'C1ValueTextBox
         '
-        Me.C1ValueTextBox.Location = New System.Drawing.Point(55, 133)
+        Me.C1ValueTextBox.Location = New System.Drawing.Point(55, 129)
         Me.C1ValueTextBox.Name = "C1ValueTextBox"
         Me.C1ValueTextBox.Size = New System.Drawing.Size(84, 20)
         Me.C1ValueTextBox.TabIndex = 8
@@ -186,7 +186,7 @@ Partial Class MainForm
         'L1ValueLabel
         '
         Me.L1ValueLabel.AutoSize = True
-        Me.L1ValueLabel.Location = New System.Drawing.Point(15, 188)
+        Me.L1ValueLabel.Location = New System.Drawing.Point(15, 184)
         Me.L1ValueLabel.Name = "L1ValueLabel"
         Me.L1ValueLabel.Size = New System.Drawing.Size(19, 13)
         Me.L1ValueLabel.TabIndex = 0
@@ -194,7 +194,7 @@ Partial Class MainForm
         '
         'L1ValueTextBox
         '
-        Me.L1ValueTextBox.Location = New System.Drawing.Point(55, 185)
+        Me.L1ValueTextBox.Location = New System.Drawing.Point(55, 181)
         Me.L1ValueTextBox.Name = "L1ValueTextBox"
         Me.L1ValueTextBox.Size = New System.Drawing.Size(84, 20)
         Me.L1ValueTextBox.TabIndex = 12
@@ -202,7 +202,7 @@ Partial Class MainForm
         'C2ValueLabel
         '
         Me.C2ValueLabel.AutoSize = True
-        Me.C2ValueLabel.Location = New System.Drawing.Point(15, 162)
+        Me.C2ValueLabel.Location = New System.Drawing.Point(15, 158)
         Me.C2ValueLabel.Name = "C2ValueLabel"
         Me.C2ValueLabel.Size = New System.Drawing.Size(20, 13)
         Me.C2ValueLabel.TabIndex = 0
@@ -211,7 +211,7 @@ Partial Class MainForm
         'RwValueLabel
         '
         Me.RwValueLabel.AutoSize = True
-        Me.RwValueLabel.Location = New System.Drawing.Point(15, 214)
+        Me.RwValueLabel.Location = New System.Drawing.Point(15, 210)
         Me.RwValueLabel.Name = "RwValueLabel"
         Me.RwValueLabel.Size = New System.Drawing.Size(23, 13)
         Me.RwValueLabel.TabIndex = 0
@@ -219,14 +219,14 @@ Partial Class MainForm
         '
         'C2ValueTextBox
         '
-        Me.C2ValueTextBox.Location = New System.Drawing.Point(55, 159)
+        Me.C2ValueTextBox.Location = New System.Drawing.Point(55, 155)
         Me.C2ValueTextBox.Name = "C2ValueTextBox"
         Me.C2ValueTextBox.Size = New System.Drawing.Size(84, 20)
         Me.C2ValueTextBox.TabIndex = 10
         '
         'RwValueTextBox
         '
-        Me.RwValueTextBox.Location = New System.Drawing.Point(55, 211)
+        Me.RwValueTextBox.Location = New System.Drawing.Point(55, 207)
         Me.RwValueTextBox.Name = "RwValueTextBox"
         Me.RwValueTextBox.Size = New System.Drawing.Size(84, 20)
         Me.RwValueTextBox.TabIndex = 14
@@ -235,7 +235,7 @@ Partial Class MainForm
         '
         Me.VGenANotationComboBox.FormattingEnabled = True
         Me.VGenANotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3"})
-        Me.VGenANotationComboBox.Location = New System.Drawing.Point(145, 30)
+        Me.VGenANotationComboBox.Location = New System.Drawing.Point(145, 26)
         Me.VGenANotationComboBox.Name = "VGenANotationComboBox"
         Me.VGenANotationComboBox.Size = New System.Drawing.Size(51, 21)
         Me.VGenANotationComboBox.TabIndex = 1
@@ -244,7 +244,7 @@ Partial Class MainForm
         '
         Me.RGenNotationComboBox.FormattingEnabled = True
         Me.RGenNotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3"})
-        Me.RGenNotationComboBox.Location = New System.Drawing.Point(145, 80)
+        Me.RGenNotationComboBox.Location = New System.Drawing.Point(145, 76)
         Me.RGenNotationComboBox.Name = "RGenNotationComboBox"
         Me.RGenNotationComboBox.Size = New System.Drawing.Size(51, 21)
         Me.RGenNotationComboBox.TabIndex = 5
@@ -253,7 +253,7 @@ Partial Class MainForm
         '
         Me.R1NotationComboBox.FormattingEnabled = True
         Me.R1NotationComboBox.Items.AddRange(New Object() {"x10^6", "x10^3", "x10^0", "x10^-3"})
-        Me.R1NotationComboBox.Location = New System.Drawing.Point(145, 106)
+        Me.R1NotationComboBox.Location = New System.Drawing.Point(145, 102)
         Me.R1NotationComboBox.Name = "R1NotationComboBox"
         Me.R1NotationComboBox.Size = New System.Drawing.Size(51, 21)
         Me.R1NotationComboBox.TabIndex = 7
@@ -262,7 +262,7 @@ Partial Class MainForm
         '
         Me.RwNotationComboBox.FormattingEnabled = True
         Me.RwNotationComboBox.Items.AddRange(New Object() {"x10^6", "x10^3", "x10^0", "x10^-3"})
-        Me.RwNotationComboBox.Location = New System.Drawing.Point(145, 211)
+        Me.RwNotationComboBox.Location = New System.Drawing.Point(145, 207)
         Me.RwNotationComboBox.Name = "RwNotationComboBox"
         Me.RwNotationComboBox.Size = New System.Drawing.Size(51, 21)
         Me.RwNotationComboBox.TabIndex = 15
@@ -271,7 +271,7 @@ Partial Class MainForm
         '
         Me.C1NotationComboBox.FormattingEnabled = True
         Me.C1NotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3", "x10^-6", "x10^-9", "x10^-12"})
-        Me.C1NotationComboBox.Location = New System.Drawing.Point(145, 133)
+        Me.C1NotationComboBox.Location = New System.Drawing.Point(145, 129)
         Me.C1NotationComboBox.Name = "C1NotationComboBox"
         Me.C1NotationComboBox.Size = New System.Drawing.Size(51, 21)
         Me.C1NotationComboBox.TabIndex = 9
@@ -280,7 +280,7 @@ Partial Class MainForm
         '
         Me.C2NotationComboBox.FormattingEnabled = True
         Me.C2NotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3", "x10^-6", "x10^-9", "x10^-12"})
-        Me.C2NotationComboBox.Location = New System.Drawing.Point(145, 159)
+        Me.C2NotationComboBox.Location = New System.Drawing.Point(145, 155)
         Me.C2NotationComboBox.Name = "C2NotationComboBox"
         Me.C2NotationComboBox.Size = New System.Drawing.Size(51, 21)
         Me.C2NotationComboBox.TabIndex = 11
@@ -289,28 +289,10 @@ Partial Class MainForm
         '
         Me.L1NotationComboBox.FormattingEnabled = True
         Me.L1NotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3", "x10^-6", "x10^-9", "x10^-12"})
-        Me.L1NotationComboBox.Location = New System.Drawing.Point(145, 184)
+        Me.L1NotationComboBox.Location = New System.Drawing.Point(145, 180)
         Me.L1NotationComboBox.Name = "L1NotationComboBox"
         Me.L1NotationComboBox.Size = New System.Drawing.Size(51, 21)
         Me.L1NotationComboBox.TabIndex = 13
-        '
-        'ValueLabel
-        '
-        Me.ValueLabel.AutoSize = True
-        Me.ValueLabel.Location = New System.Drawing.Point(78, 13)
-        Me.ValueLabel.Name = "ValueLabel"
-        Me.ValueLabel.Size = New System.Drawing.Size(34, 13)
-        Me.ValueLabel.TabIndex = 14
-        Me.ValueLabel.Text = "Value"
-        '
-        'PowerLabel
-        '
-        Me.PowerLabel.AutoSize = True
-        Me.PowerLabel.Location = New System.Drawing.Point(152, 14)
-        Me.PowerLabel.Name = "PowerLabel"
-        Me.PowerLabel.Size = New System.Drawing.Size(37, 13)
-        Me.PowerLabel.TabIndex = 14
-        Me.PowerLabel.Text = "Power"
         '
         'CalculateButton
         '
@@ -319,6 +301,8 @@ Partial Class MainForm
         Me.CalculateButton.Size = New System.Drawing.Size(206, 53)
         Me.CalculateButton.TabIndex = 1
         Me.CalculateButton.Text = "C&alculate"
+        Me.ToolTip.SetToolTip(Me.CalculateButton, "Calculates the voltage, current and power of each component." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "All fields must be " &
+        "filled to calculate.")
         Me.CalculateButton.UseVisualStyleBackColor = True
         '
         'PictureBox1
@@ -407,7 +391,7 @@ Partial Class MainForm
         'VGenFValueLabel
         '
         Me.VGenFValueLabel.AutoSize = True
-        Me.VGenFValueLabel.Location = New System.Drawing.Point(15, 58)
+        Me.VGenFValueLabel.Location = New System.Drawing.Point(15, 54)
         Me.VGenFValueLabel.Name = "VGenFValueLabel"
         Me.VGenFValueLabel.Size = New System.Drawing.Size(40, 13)
         Me.VGenFValueLabel.TabIndex = 0
@@ -415,16 +399,17 @@ Partial Class MainForm
         '
         'VGenFValueTextBox
         '
-        Me.VGenFValueTextBox.Location = New System.Drawing.Point(55, 55)
+        Me.VGenFValueTextBox.Location = New System.Drawing.Point(55, 51)
         Me.VGenFValueTextBox.Name = "VGenFValueTextBox"
         Me.VGenFValueTextBox.Size = New System.Drawing.Size(84, 20)
         Me.VGenFValueTextBox.TabIndex = 2
+        Me.ToolTip.SetToolTip(Me.VGenFValueTextBox, "The frequency of VGen")
         '
         'VGenFNotationComboBox
         '
         Me.VGenFNotationComboBox.FormattingEnabled = True
-        Me.VGenFNotationComboBox.Items.AddRange(New Object() {"x10^-3", "x10^0", "x10^3", "x10^6", "x10^9"})
-        Me.VGenFNotationComboBox.Location = New System.Drawing.Point(145, 56)
+        Me.VGenFNotationComboBox.Items.AddRange(New Object() {"x10^9", "x10^6", "x10^3", "x10^0", "x10^-3"})
+        Me.VGenFNotationComboBox.Location = New System.Drawing.Point(145, 52)
         Me.VGenFNotationComboBox.Name = "VGenFNotationComboBox"
         Me.VGenFNotationComboBox.Size = New System.Drawing.Size(51, 21)
         Me.VGenFNotationComboBox.TabIndex = 3
@@ -486,8 +471,6 @@ Partial Class MainForm
     Friend WithEvents C1NotationComboBox As ComboBox
     Friend WithEvents L1NotationComboBox As ComboBox
     Friend WithEvents C2NotationComboBox As ComboBox
-    Friend WithEvents PowerLabel As Label
-    Friend WithEvents ValueLabel As Label
     Friend WithEvents CalculateButton As Button
     Friend WithEvents VGenFrequencyLabel As Label
     Friend WithEvents VGenAmplitudeLabel As Label

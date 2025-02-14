@@ -12,7 +12,7 @@ Public Class MainForm
 
     End Sub
 
-    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click, ClearButton.Click
         Me.Close()
     End Sub
 

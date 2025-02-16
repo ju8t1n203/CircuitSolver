@@ -71,11 +71,11 @@ Partial Class MainForm
         Me.R1SchematicLabel = New System.Windows.Forms.Label()
         Me.L1SchematicLabel = New System.Windows.Forms.Label()
         Me.CoordinatesGroupBox = New System.Windows.Forms.GroupBox()
-        Me.RectangularRadioButton = New System.Windows.Forms.RadioButton()
         Me.PolarRadioButton = New System.Windows.Forms.RadioButton()
+        Me.RectangularRadioButton = New System.Windows.Forms.RadioButton()
         Me.DenotationGroupBox = New System.Windows.Forms.GroupBox()
-        Me.PeakRadioButton = New System.Windows.Forms.RadioButton()
         Me.RMSRadioButton = New System.Windows.Forms.RadioButton()
+        Me.PeakRadioButton = New System.Windows.Forms.RadioButton()
         Me.ClearButton = New System.Windows.Forms.Button()
         Me.LogButton = New System.Windows.Forms.Button()
         Me.ComponentValuesGroupBox.SuspendLayout()
@@ -534,27 +534,27 @@ Partial Class MainForm
         Me.CoordinatesGroupBox.TabStop = False
         Me.CoordinatesGroupBox.Text = "Coordinate Type"
         '
-        'RectangularRadioButton
-        '
-        Me.RectangularRadioButton.AutoSize = True
-        Me.RectangularRadioButton.Checked = True
-        Me.RectangularRadioButton.Location = New System.Drawing.Point(6, 26)
-        Me.RectangularRadioButton.Name = "RectangularRadioButton"
-        Me.RectangularRadioButton.Size = New System.Drawing.Size(83, 17)
-        Me.RectangularRadioButton.TabIndex = 0
-        Me.RectangularRadioButton.TabStop = True
-        Me.RectangularRadioButton.Text = "Rectangular"
-        Me.RectangularRadioButton.UseVisualStyleBackColor = True
-        '
         'PolarRadioButton
         '
         Me.PolarRadioButton.AutoSize = True
-        Me.PolarRadioButton.Location = New System.Drawing.Point(6, 48)
+        Me.PolarRadioButton.Checked = True
+        Me.PolarRadioButton.Location = New System.Drawing.Point(7, 24)
         Me.PolarRadioButton.Name = "PolarRadioButton"
         Me.PolarRadioButton.Size = New System.Drawing.Size(49, 17)
         Me.PolarRadioButton.TabIndex = 1
+        Me.PolarRadioButton.TabStop = True
         Me.PolarRadioButton.Text = "Polar"
         Me.PolarRadioButton.UseVisualStyleBackColor = True
+        '
+        'RectangularRadioButton
+        '
+        Me.RectangularRadioButton.AutoSize = True
+        Me.RectangularRadioButton.Location = New System.Drawing.Point(7, 46)
+        Me.RectangularRadioButton.Name = "RectangularRadioButton"
+        Me.RectangularRadioButton.Size = New System.Drawing.Size(83, 17)
+        Me.RectangularRadioButton.TabIndex = 0
+        Me.RectangularRadioButton.Text = "Rectangular"
+        Me.RectangularRadioButton.UseVisualStyleBackColor = True
         '
         'DenotationGroupBox
         '
@@ -567,6 +567,16 @@ Partial Class MainForm
         Me.DenotationGroupBox.TabStop = False
         Me.DenotationGroupBox.Text = "Denotation"
         '
+        'RMSRadioButton
+        '
+        Me.RMSRadioButton.AutoSize = True
+        Me.RMSRadioButton.Location = New System.Drawing.Point(6, 45)
+        Me.RMSRadioButton.Name = "RMSRadioButton"
+        Me.RMSRadioButton.Size = New System.Drawing.Size(49, 17)
+        Me.RMSRadioButton.TabIndex = 1
+        Me.RMSRadioButton.Text = "RMS"
+        Me.RMSRadioButton.UseVisualStyleBackColor = True
+        '
         'PeakRadioButton
         '
         Me.PeakRadioButton.AutoSize = True
@@ -578,16 +588,6 @@ Partial Class MainForm
         Me.PeakRadioButton.TabStop = True
         Me.PeakRadioButton.Text = "Peak"
         Me.PeakRadioButton.UseVisualStyleBackColor = True
-        '
-        'RMSRadioButton
-        '
-        Me.RMSRadioButton.AutoSize = True
-        Me.RMSRadioButton.Location = New System.Drawing.Point(6, 45)
-        Me.RMSRadioButton.Name = "RMSRadioButton"
-        Me.RMSRadioButton.Size = New System.Drawing.Size(49, 17)
-        Me.RMSRadioButton.TabIndex = 1
-        Me.RMSRadioButton.Text = "RMS"
-        Me.RMSRadioButton.UseVisualStyleBackColor = True
         '
         'ClearButton
         '

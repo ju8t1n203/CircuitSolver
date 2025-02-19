@@ -8,9 +8,7 @@ Option Explicit On
 Option Strict On
 
 Public Class MainForm
-    Dim ztx As Decimal
-    Dim zty As Decimal
-
+    Dim _continue As Boolean
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -63,8 +61,13 @@ Public Class MainForm
     End Sub
 
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
-
+        _continue = False
         CheckValues() 'error handling
+
+        If _continue = False Then
+        Else
+            CalculateZTotal()
+        End If
 
     End Sub
 
@@ -225,20 +228,48 @@ Public Class MainForm
 
         If warning <> "" Then
             MsgBox(warning)
+        Else
+            _continue = True
         End If
 
     End Sub
 
-    'Sub CalculateZTotal()
-    '    Dim zsx As Decimal
-    '    Dim zsy As Decimal
-    '    Dim zpx As Decimal
-    '    Dim zpy As Decimal
-    '    Dim zb1y As Decimal
-    '    Dim zb2x As Decimal
-    '    Dim zb2y As Decimal
-    '    zb1y = 1 / CDec(2 * 3.1415 * (CDec(VGenFValueTextBox.Text)))
-    'End Sub
+    Sub CalculateZTotal()
+        Dim xC1 As Decimal
+        Dim xC2 As Decimal
+        Dim xL1 As Decimal
+        Dim zBX As Decimal       'zb is the impedance of L1 + Rw
+        Dim zBY As Decimal
+        Dim zSX As Decimal      'zs is the impedance of RGen + R1 + C1
+        Dim zSY As Decimal
+        Dim zPX As Decimal       'zp is the impedance of zb//c1
+        Dim zPY As Decimal
+        Dim zTX As Decimal      'total circiut impedance
+        Dim zTY As Decimal
+
+        xC1 = CDec(1 / (2 * 3.1415 * CDec(VGenFValueTextBox.Text) * CDec(C1ValueTextBox.Text)))
+        xC2 = CDec(1 / (2 * 3.1415 * CDec(VGenFValueTextBox.Text) * CDec(C2ValueTextBox.Text)))
+        xL1 = CDec(1 / (2 * 3.1415 * CDec(VGenFValueTextBox.Text) * CDec(L1ValueTextBox.Text)))
+        zBX = CDec(RwValueTextBox.Text)
+        zBY = xL1
+        zSX = CDec(RGenValueTextBox.Text) + CDec(R1ValueTextBox.Text)
+        zSY = -1 * xC1              '-1 because it is capacitive
+        'zp=((zBX+zBY)^-1 +(0-xC1)^-1)^-1
+        Dim Z1_real As Decimal = zBX
+        Dim Z1_imag As Decimal = zBY
+        Dim Z2_real As Decimal = 0
+        Dim Z2_imag As Decimal = -xC2
+
+        Dim denom_real As Decimal = CDec((Z1_real / (Z1_real ^ 2 + Z1_imag ^ 2)) + (Z2_real / (Z2_real ^ 2 + Z2_imag ^ 2)))
+        Dim denom_imag As Decimal = CDec((-Z1_imag / (Z1_real ^ 2 + Z1_imag ^ 2)) + (-Z2_imag / (Z2_real ^ 2 + Z2_imag ^ 2)))
+
+        Dim denom_mag As Decimal = CDec(denom_real ^ 2 + denom_imag ^ 2)
+        zPX = denom_real / denom_mag
+        zPY = -denom_imag / denom_mag
+        zTX = zPX + zSX
+        zTY = zPY + zSY
+        TestLabel.Text = $"Zparrallel = {zPX}, {zPY}i"
+    End Sub
 
     'display options---------------------------------------
     Private Sub PolarRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles PolarRadioButton.CheckedChanged

@@ -78,6 +78,7 @@ Partial Class MainForm
         Me.PeakRadioButton = New System.Windows.Forms.RadioButton()
         Me.ClearButton = New System.Windows.Forms.Button()
         Me.LogButton = New System.Windows.Forms.Button()
+        Me.TestLabel = New System.Windows.Forms.Label()
         Me.ComponentValuesGroupBox.SuspendLayout()
         Me.CalculationsGroupBox.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -607,11 +608,21 @@ Partial Class MainForm
         Me.LogButton.Text = "V&iew Log"
         Me.LogButton.UseVisualStyleBackColor = True
         '
+        'TestLabel
+        '
+        Me.TestLabel.AutoSize = True
+        Me.TestLabel.Location = New System.Drawing.Point(27, 52)
+        Me.TestLabel.Name = "TestLabel"
+        Me.TestLabel.Size = New System.Drawing.Size(39, 13)
+        Me.TestLabel.TabIndex = 8
+        Me.TestLabel.Text = "Label1"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(796, 501)
+        Me.Controls.Add(Me.TestLabel)
         Me.Controls.Add(Me.LogButton)
         Me.Controls.Add(Me.DenotationGroupBox)
         Me.Controls.Add(Me.CoordinatesGroupBox)
@@ -704,4 +715,5 @@ Partial Class MainForm
     Friend WithEvents PeakRadioButton As RadioButton
     Friend WithEvents ClearButton As Button
     Friend WithEvents LogButton As Button
+    Friend WithEvents TestLabel As Label
 End Class

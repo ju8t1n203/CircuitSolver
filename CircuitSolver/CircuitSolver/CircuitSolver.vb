@@ -7,10 +7,11 @@ Option Strict On
 'link
 
 Imports System.Globalization
-
+Imports System.Math
 Public Class MainForm
     Dim _continue As Boolean
-    Private values(7, 2) As String
+    Private values(8, 4) As String      'refer to the "About" in the menu strip for array content layout
+
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -71,6 +72,7 @@ Public Class MainForm
         Else
             'check passed start calculations
             Reals()
+            LabelSet()
             CalculateZTotal()
         End If
 
@@ -290,7 +292,15 @@ Public Class MainForm
         zPY = -denom_imag / denom_mag
         zTX = zPX + zSX
         zTY = zPY + zSY
-        TestLabel.Text = $"ZTotal = {zTX}+{zTY}i"
+        values(9, 0) = CStr(zTX)
+        values(9, 1) = CStr(zTY)
+
+    End Sub
+
+    Sub CalculateVoltages()
+        values(9, 2) = CStr(CDec(values(8, 0)) - CDec(values(7, 2)))
+        TestLabel.Text = $"vinx: {values(8, 2)}"
+        'CalculatedVinLabel.Text = $"{CDec(values(0, 2) * (values())}"
     End Sub
 
     'display options---------------------------------------
@@ -394,8 +404,34 @@ Public Class MainForm
         RwSchematicLabel.Text = $"{values(7, 0)}{values(7, 1)} Ω"
     End Sub
 
+    Sub Rect2Pol(x As Decimal, y As Decimal)
+        'calculate the radius
+        Dim radius As Decimal = CDec(Sqrt(x * x + y * y))
+        'calculates the angle in radians
+        Dim degree As Decimal = CDec(Atan2(y, x) * (180 / PI))
+
+        'save results
+        values(9, 0) = CStr(radius)
+        values(9, 1) = CStr(degree)
+    End Sub
+
+    Sub Pol2Rect(radius As Decimal, degree As Decimal)
+        'converts degrees to radians
+        Dim radian As Decimal = CDec(degree * (PI / 180))
+
+        'calculates x and y
+        Dim x As Decimal = radius * CDec(Cos(radian))
+        Dim y As Decimal = radius * CDec(Sin(radian))
+
+        'save results
+        values(9, 2) = CStr(x)
+        values(9, 3) = CStr(y)
+
+    End Sub
+
+
     'used for testing
     Private Sub TestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestToolStripMenuItem.Click
-        LabelSet()
+        CalculateVoltages()
     End Sub
 End Class

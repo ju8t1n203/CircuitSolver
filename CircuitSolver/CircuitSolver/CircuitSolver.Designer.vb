@@ -80,6 +80,8 @@ Partial Class MainForm
         Me.ClearButton = New System.Windows.Forms.Button()
         Me.LogButton = New System.Windows.Forms.Button()
         Me.TestLabel = New System.Windows.Forms.Label()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComponentValuesGroupBox.SuspendLayout()
         Me.CalculationsGroupBox.SuspendLayout()
         Me.MenuStrip.SuspendLayout()
@@ -439,7 +441,7 @@ Partial Class MainForm
         '
         'MenuStrip
         '
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TestToolStripMenuItem})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TestToolStripMenuItem, Me.HelpToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(796, 25)
@@ -626,6 +628,18 @@ Partial Class MainForm
         Me.TestLabel.TabIndex = 8
         Me.TestLabel.Text = "Label1"
         '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(45, 21)
+        Me.HelpToolStripMenuItem.Text = "Help"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(52, 21)
+        Me.AboutToolStripMenuItem.Text = "About"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -728,4 +742,6 @@ Partial Class MainForm
     Friend WithEvents LogButton As Button
     Friend WithEvents TestLabel As Label
     Friend WithEvents TestToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
 End Class

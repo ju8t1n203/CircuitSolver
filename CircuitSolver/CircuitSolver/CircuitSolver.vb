@@ -292,8 +292,8 @@ Public Class MainForm
         zPY = -denom_imag / denom_mag
         zTX = zPX + zSX
         zTY = zPY + zSY
-        values(9, 0) = CStr(zTX)
-        values(9, 1) = CStr(zTY)
+        values(8, 2) = CStr(zTX)
+        values(8, 3) = CStr(zTY)
 
     End Sub
 
@@ -432,6 +432,18 @@ Public Class MainForm
 
     'used for testing
     Private Sub TestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestToolStripMenuItem.Click
-        CalculateVoltages()
+
     End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        'opens the about text file
+        Dim filePath As String = IO.Path.Combine(Application.StartupPath, "..\About.txt")
+        Process.Start(filePath)
+    End Sub
+
+    Private Sub HelpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HelpToolStripMenuItem.Click
+        Dim filePath As String = IO.Path.Combine(Application.StartupPath, "..\Help.txt")
+        Process.Start(filePath)
+    End Sub
+
 End Class

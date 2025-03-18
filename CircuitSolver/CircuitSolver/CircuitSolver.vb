@@ -8,6 +8,13 @@ Option Strict On
 
 Imports System.Globalization
 Imports System.Math
+
+'TODO
+' [ ] calculate voltages
+' [ ] calculate powers
+' [ ] coordinate radio button functionality
+' [ ] denotation radio button functionality
+
 Public Class MainForm
     Dim _continue As Boolean
     Private values(8, 4) As String      'refer to the "About" in the menu strip for array content layout
@@ -16,6 +23,7 @@ Public Class MainForm
 
     End Sub
 
+    'button event handlers----------------------------
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
     End Sub
@@ -71,13 +79,14 @@ Public Class MainForm
             'check failed do nothing
         Else
             'check passed start calculations
-            Reals()
-            LabelSet()
+            ActualValue()
+            SetSchematicLabels()
             CalculateZTotal()
         End If
 
     End Sub
 
+    'calculation subroutines ---------------------------
     Sub CheckValues()
         Dim empty As Integer        'for when a text/combo box is empty
         Dim wrong As Integer        'for when a textbox does not contain a decimal number
@@ -257,74 +266,7 @@ Public Class MainForm
 
     End Sub
 
-    Sub CalculateZTotal()
-        'dimensions for specs needed for calculations
-        Dim xC1 As Decimal
-        Dim xC2 As Decimal
-        Dim xL1 As Decimal
-        Dim zBX As Decimal       'zb is the impedance of L1 + Rw
-        Dim zBY As Decimal
-        Dim zSX As Decimal      'zs is the impedance of RGen + R1 + C1
-        Dim zSY As Decimal
-        Dim zPX As Decimal       'zp is the impedance of zb//c1
-        Dim zPY As Decimal
-        Dim zTX As Decimal      'total circiut impedance
-        Dim zTY As Decimal
-
-        xC1 = CDec(1 / (2 * 3.1415 * CDec(values(1, 2)) * CDec(values(4, 2))))
-        xC2 = CDec(1 / (2 * 3.1415 * CDec(values(1, 2)) * CDec(values(5, 2))))
-        xL1 = CDec(2 * 3.1415 * CDec(values(1, 2)) * CDec(values(6, 2)))
-        zBX = CDec(values(7, 2))
-        zBY = xL1
-        zSX = CDec(values(2, 2)) + CDec(values(3, 2))
-        zSY = -1 * xC1              '-1 because it is capacitive
-        'zp=((zBX+zBY)^-1 +(0-xC1)^-1)^-1
-        Dim Z1_real As Decimal = zBX
-        Dim Z1_imag As Decimal = zBY
-        Dim Z2_real As Decimal = 0
-        Dim Z2_imag As Decimal = -xC2
-
-        Dim denom_real As Decimal = CDec((Z1_real / (Z1_real ^ 2 + Z1_imag ^ 2)) + (Z2_real / (Z2_real ^ 2 + Z2_imag ^ 2)))
-        Dim denom_imag As Decimal = CDec((-Z1_imag / (Z1_real ^ 2 + Z1_imag ^ 2)) + (-Z2_imag / (Z2_real ^ 2 + Z2_imag ^ 2)))
-
-        Dim denom_mag As Decimal = CDec(denom_real ^ 2 + denom_imag ^ 2)
-        zPX = denom_real / denom_mag
-        zPY = -denom_imag / denom_mag
-        zTX = zPX + zSX
-        zTY = zPY + zSY
-        values(8, 2) = CStr(zTX)
-        values(8, 3) = CStr(zTY)
-
-    End Sub
-
-    Sub CalculateVoltages()
-        values(9, 2) = CStr(CDec(values(8, 0)) - CDec(values(7, 2)))
-        TestLabel.Text = $"vinx: {values(8, 2)}"
-        'CalculatedVinLabel.Text = $"{CDec(values(0, 2) * (values())}"
-    End Sub
-
-    'display options---------------------------------------
-    Private Sub PolarRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles PolarRadioButton.CheckedChanged
-
-    End Sub
-
-    Private Sub RectangularRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles RectangularRadioButton.CheckedChanged
-
-    End Sub
-
-    Private Sub PeakRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles PeakRadioButton.CheckedChanged
-
-    End Sub
-
-    Private Sub RMSRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles RMSRadioButton.CheckedChanged
-
-    End Sub
-
-    ''' <summary>
-    ''' Retrieves the value from the associated combo box to claculate the inteded user inputed value.
-    ''' The value is then stored in the values array to be using in calculations
-    ''' </summary>
-    Sub Reals()
+    Sub ActualValue()
         Dim exponentString As String
         Dim exponent As Integer = 0
 
@@ -393,17 +335,6 @@ Public Class MainForm
         values(7, 2) = CStr(CDec(RwValueTextBox.Text) * Math.Pow(10, exponent))
     End Sub
 
-    Sub LabelSet()
-        VGenAmplitudeLabel.Text = $"{values(0, 0)}{values(0, 1)} Vpp"
-        VGenFrequencyLabel.Text = $"{values(1, 0)}{values(1, 1)} Hz"
-        RGenSchematicLabel.Text = $"{values(2, 0)}{values(2, 1)} Ω"
-        R1SchematicLabel.Text = $"{values(3, 0)}{values(3, 1)} Ω"
-        C1SchematicLabel.Text = $"{values(4, 0)}{values(4, 1)} F"
-        C2SchematicLabel.Text = $"{values(5, 0)}{values(5, 1)} F"
-        L1SchematicLabel.Text = $"{values(6, 0)}{values(6, 1)} L"
-        RwSchematicLabel.Text = $"{values(7, 0)}{values(7, 1)} Ω"
-    End Sub
-
     Sub Rect2Pol(x As Decimal, y As Decimal)
         'calculate the radius
         Dim radius As Decimal = CDec(Sqrt(x * x + y * y))
@@ -429,13 +360,86 @@ Public Class MainForm
 
     End Sub
 
+    Sub CalculateZTotal()
+        'dimensions for specs needed for calculations
+        Dim xC1 As Decimal
+        Dim xC2 As Decimal
+        Dim xL1 As Decimal
+        Dim zBX As Decimal       'zb is the impedance of L1 + Rw
+        Dim zBY As Decimal
+        Dim zSX As Decimal      'zs is the impedance of RGen + R1 + C1
+        Dim zSY As Decimal
+        Dim zPX As Decimal       'zp is the impedance of zb//c1
+        Dim zPY As Decimal
+        Dim zTX As Decimal      'total circiut impedance
+        Dim zTY As Decimal
 
-    'used for testing
+        xC1 = CDec(1 / (2 * 3.1415 * CDec(values(1, 2)) * CDec(values(4, 2))))
+        xC2 = CDec(1 / (2 * 3.1415 * CDec(values(1, 2)) * CDec(values(5, 2))))
+        xL1 = CDec(2 * 3.1415 * CDec(values(1, 2)) * CDec(values(6, 2)))
+        zBX = CDec(values(7, 2))
+        zBY = xL1
+        zSX = CDec(values(2, 2)) + CDec(values(3, 2))
+        zSY = -1 * xC1              '-1 because it is capacitive
+        'zp=((zBX+zBY)^-1 +(0-xC1)^-1)^-1
+        Dim Z1_real As Decimal = zBX
+        Dim Z1_imag As Decimal = zBY
+        Dim Z2_real As Decimal = 0
+        Dim Z2_imag As Decimal = -xC2
+
+        Dim denom_real As Decimal = CDec((Z1_real / (Z1_real ^ 2 + Z1_imag ^ 2)) + (Z2_real / (Z2_real ^ 2 + Z2_imag ^ 2)))
+        Dim denom_imag As Decimal = CDec((-Z1_imag / (Z1_real ^ 2 + Z1_imag ^ 2)) + (-Z2_imag / (Z2_real ^ 2 + Z2_imag ^ 2)))
+
+        Dim denom_mag As Decimal = CDec(denom_real ^ 2 + denom_imag ^ 2)
+        zPX = denom_real / denom_mag
+        zPY = -denom_imag / denom_mag
+        zTX = zPX + zSX
+        zTY = zPY + zSY
+        values(8, 2) = CStr(zTX)
+        values(8, 3) = CStr(zTY)
+
+    End Sub
+
+    Sub CalculateVoltages()
+        values(9, 2) = CStr(CDec(values(8, 0)) - CDec(values(7, 2)))
+        TestLabel.Text = $"vinx: {values(8, 2)}"
+        'CalculatedVinLabel.Text = $"{CDec(values(0, 2) * (values())}"
+    End Sub
+
+    'display options---------------------------------------
+    Private Sub PolarRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles PolarRadioButton.CheckedChanged
+
+    End Sub
+
+    Private Sub RectangularRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles RectangularRadioButton.CheckedChanged
+
+    End Sub
+
+    Private Sub PeakRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles PeakRadioButton.CheckedChanged
+
+    End Sub
+
+    Private Sub RMSRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles RMSRadioButton.CheckedChanged
+
+    End Sub
+
+    'extra subroutines----------------------------------
+    Sub SetSchematicLabels()
+        VGenAmplitudeLabel.Text = $"{values(0, 0)}{values(0, 1)} Vpp"
+        VGenFrequencyLabel.Text = $"{values(1, 0)}{values(1, 1)} Hz"
+        RGenSchematicLabel.Text = $"{values(2, 0)}{values(2, 1)} Ω"
+        R1SchematicLabel.Text = $"{values(3, 0)}{values(3, 1)} Ω"
+        C1SchematicLabel.Text = $"{values(4, 0)}{values(4, 1)} F"
+        C2SchematicLabel.Text = $"{values(5, 0)}{values(5, 1)} F"
+        L1SchematicLabel.Text = $"{values(6, 0)}{values(6, 1)} L"
+        RwSchematicLabel.Text = $"{values(7, 0)}{values(7, 1)} Ω"
+    End Sub
+
     Private Sub TestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestToolStripMenuItem.Click
 
     End Sub
 
-    'opens related files from the menu
+    'menu event handlers------------------------------
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         'opens the about text file
         Dim filePath As String = IO.Path.Combine(Application.StartupPath, "..\About.txt")

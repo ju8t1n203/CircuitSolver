@@ -1,14 +1,16 @@
-﻿'Justin Bell
+﻿Option Compare Text
+Option Explicit On
+Option Strict On
+'Justin Bell
 'RCET3371
 'S25
 'link
 
-Option Compare Text
-Option Explicit On
-Option Strict On
+Imports System.Globalization
 
 Public Class MainForm
     Dim _continue As Boolean
+    Private values(7) As Decimal
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -234,7 +236,9 @@ Public Class MainForm
 
     End Sub
 
-    Sub CalculateZTotal()
+    Sub CalculateZTotal()                       'calculates ZTotal, probably can be optimized
+
+        'dimensions for specs needed for calculations
         Dim xC1 As Decimal
         Dim xC2 As Decimal
         Dim xL1 As Decimal
@@ -288,4 +292,104 @@ Public Class MainForm
 
     End Sub
 
+    Private Sub C2NotationComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles C2NotationComboBox.SelectedIndexChanged
+        ' Get the selected item from the ComboBox
+        Dim selectedValue As String = C2NotationComboBox.SelectedItem.ToString()
+
+        ' Extract the exponent part from the string
+        Dim exponent As Integer = 0
+        If selectedValue.StartsWith("x10^") Then
+            ' Parse the exponent
+            Dim exponentString As String = selectedValue.Substring(4) ' Get the part after "x10^"
+            Integer.TryParse(exponentString, exponent) ' Convert to integer
+        End If
+
+        ' Calculate the actual value (for example, if you want to calculate 1 * 10^exponent)
+        Dim actualValue As Double = 1 * Math.Pow(10, exponent)
+
+        ' Display the result or use it for further calculations
+        TestLabel.Text = $"Selected Index: {C2NotationComboBox.SelectedIndex}, Value: {actualValue}"
+    End Sub
+
+    Sub Reals()
+        Dim exponentString As String
+        Dim exponent As Integer = 0
+
+        'gets the selected item from the combobox for the generator amplitude
+        Dim selectedAmplitude As String = VGenANotationComboBox.SelectedItem.ToString()
+        'grabs the exponent value and converts to a usable number
+        exponentString = selectedAmplitude.Substring(4)
+        Integer.TryParse(exponentString, exponent)
+        'calculates the actual value and inserts it into the array
+        values(0) = CDec(CDec(VGenAValueTextBox.Text) * Math.Pow(10, exponent))
+
+        'gets the selected item from the combobox for the generator frequency
+        Dim selectedFrequency As String = VGenFNotationComboBox.SelectedItem.ToString()
+        'grabs the exponent value and converts to a usable number
+        exponentString = selectedFrequency.Substring(4)
+        Integer.TryParse(exponentString, exponent)
+        'calculates the actual value and inserts it into the array
+        values(1) = CDec(CDec(VGenFValueTextBox.Text) * Math.Pow(10, exponent))
+
+        'gets the selected item from the combobox for the generator resistance
+        Dim selectedRGen As String = RGenNotationComboBox.SelectedItem.ToString()
+        'grabs the exponent value and converts to a usable number
+        exponentString = selectedRGen.Substring(4)
+        Integer.TryParse(exponentString, exponent)
+        'calculates the actual value and inserts it into the array
+        values(2) = CDec(CDec(RGenValueTextBox.Text) * Math.Pow(10, exponent))
+
+        'gets the selected item from the combobox for the generator resistance
+        Dim selectedR1 As String = R1NotationComboBox.SelectedItem.ToString()
+        'grabs the exponent value and converts to a usable number
+        exponentString = selectedR1.Substring(4)
+        Integer.TryParse(exponentString, exponent)
+        'calculates the actual value and inserts it into the array
+        values(3) = CDec(CDec(R1ValueTextBox.Text) * Math.Pow(10, exponent))
+
+        'gets the selected item from the combobox for the generator resistance
+        Dim selectedC1 As String = C1NotationComboBox.SelectedItem.ToString()
+        'grabs the exponent value and converts to a usable number
+        exponentString = selectedC1.Substring(4)
+        Integer.TryParse(exponentString, exponent)
+        'calculates the actual value and inserts it into the array
+        values(4) = CDec(CDec(C1ValueTextBox.Text) * Math.Pow(10, exponent))
+
+        'gets the selected item from the combobox for the generator resistance
+        Dim selectedC2 As String = C2NotationComboBox.SelectedItem.ToString()
+        'grabs the exponent value and converts to a usable number
+        exponentString = selectedC2.Substring(4)
+        Integer.TryParse(exponentString, exponent)
+        'calculates the actual value and inserts it into the array
+        values(5) = CDec(CDec(C2ValueTextBox.Text) * Math.Pow(10, exponent))
+
+        'gets the selected item from the combobox for the generator resistance
+        Dim selectedL1 As String = L1NotationComboBox.SelectedItem.ToString()
+        'grabs the exponent value and converts to a usable number
+        exponentString = selectedL1.Substring(4)
+        Integer.TryParse(exponentString, exponent)
+        'calculates the actual value and inserts it into the array
+        values(6) = CDec(CDec(L1ValueTextBox.Text) * Math.Pow(10, exponent))
+
+        'gets the selected item from the combobox for the generator resistance
+        Dim selectedRw As String = RwNotationComboBox.SelectedItem.ToString()
+        'grabs the exponent value and converts to a usable number
+        exponentString = selectedRw.Substring(4)
+        Integer.TryParse(exponentString, exponent)
+        'calculates the actual value and inserts it into the array
+        values(7) = CDec(CDec(RwValueTextBox.Text) * Math.Pow(10, exponent))
+
+        'test conversion by putting the values in a message box (remove once working)
+        Dim testString As String = String.Empty
+        For Each value In values
+            testString &= value.ToString() & "
+"
+        Next
+        MsgBox($"{testString}")
+    End Sub
+
+
+    Private Sub TestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestToolStripMenuItem.Click
+        Reals()
+    End Sub
 End Class

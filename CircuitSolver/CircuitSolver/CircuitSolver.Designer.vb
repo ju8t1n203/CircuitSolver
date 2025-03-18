@@ -79,8 +79,10 @@ Partial Class MainForm
         Me.ClearButton = New System.Windows.Forms.Button()
         Me.LogButton = New System.Windows.Forms.Button()
         Me.TestLabel = New System.Windows.Forms.Label()
+        Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComponentValuesGroupBox.SuspendLayout()
         Me.CalculationsGroupBox.SuspendLayout()
+        Me.MenuStrip.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CoordinatesGroupBox.SuspendLayout()
         Me.DenotationGroupBox.SuspendLayout()
@@ -152,7 +154,7 @@ Partial Class MainForm
         'R1NotationComboBox
         '
         Me.R1NotationComboBox.FormattingEnabled = True
-        Me.R1NotationComboBox.Items.AddRange(New Object() {"x10^6", "x10^3", "x10^0", "x10^-3"})
+        Me.R1NotationComboBox.Items.AddRange(New Object() {"x10^6", "x10^3", "x10^0"})
         Me.R1NotationComboBox.Location = New System.Drawing.Point(145, 102)
         Me.R1NotationComboBox.Name = "R1NotationComboBox"
         Me.R1NotationComboBox.Size = New System.Drawing.Size(51, 21)
@@ -437,9 +439,10 @@ Partial Class MainForm
         '
         'MenuStrip
         '
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TestToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
-        Me.MenuStrip.Size = New System.Drawing.Size(796, 24)
+        Me.MenuStrip.Size = New System.Drawing.Size(796, 25)
         Me.MenuStrip.TabIndex = 1
         Me.MenuStrip.Text = "MenuStrip1"
         '
@@ -596,7 +599,7 @@ Partial Class MainForm
         Me.ClearButton.Name = "ClearButton"
         Me.ClearButton.Size = New System.Drawing.Size(149, 53)
         Me.ClearButton.TabIndex = 5
-        Me.ClearButton.Text = "C&lear"
+        Me.ClearButton.Text = "&Clear"
         Me.ClearButton.UseVisualStyleBackColor = True
         '
         'LogButton
@@ -605,7 +608,7 @@ Partial Class MainForm
         Me.LogButton.Name = "LogButton"
         Me.LogButton.Size = New System.Drawing.Size(305, 100)
         Me.LogButton.TabIndex = 6
-        Me.LogButton.Text = "V&iew Log"
+        Me.LogButton.Text = "&View Log"
         Me.LogButton.UseVisualStyleBackColor = True
         '
         'TestLabel
@@ -616,6 +619,12 @@ Partial Class MainForm
         Me.TestLabel.Size = New System.Drawing.Size(39, 13)
         Me.TestLabel.TabIndex = 8
         Me.TestLabel.Text = "Label1"
+        '
+        'TestToolStripMenuItem
+        '
+        Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
+        Me.TestToolStripMenuItem.Size = New System.Drawing.Size(44, 21)
+        Me.TestToolStripMenuItem.Text = "test"
         '
         'MainForm
         '
@@ -650,6 +659,8 @@ Partial Class MainForm
         Me.ComponentValuesGroupBox.PerformLayout()
         Me.CalculationsGroupBox.ResumeLayout(False)
         Me.CalculationsGroupBox.PerformLayout()
+        Me.MenuStrip.ResumeLayout(False)
+        Me.MenuStrip.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CoordinatesGroupBox.ResumeLayout(False)
         Me.CoordinatesGroupBox.PerformLayout()
@@ -716,4 +727,5 @@ Partial Class MainForm
     Friend WithEvents ClearButton As Button
     Friend WithEvents LogButton As Button
     Friend WithEvents TestLabel As Label
+    Friend WithEvents TestToolStripMenuItem As ToolStripMenuItem
 End Class

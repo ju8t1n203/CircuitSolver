@@ -10,7 +10,7 @@ Imports System.Globalization
 
 Public Class MainForm
     Dim _continue As Boolean
-    Private values(7) As Decimal
+    Private values(7, 2) As String
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -67,7 +67,10 @@ Public Class MainForm
         CheckValues() 'error handling
 
         If _continue = False Then
+            'check failed do nothing
         Else
+            'check passed start calculations
+            Reals()
             CalculateZTotal()
         End If
 
@@ -88,6 +91,7 @@ Public Class MainForm
                 wrong += 1
             End If
         End If
+        values(0, 0) = VGenAValueTextBox.Text
 
         If String.IsNullOrEmpty(VGenFValueTextBox.Text) Then
             empty += 1
@@ -97,6 +101,7 @@ Public Class MainForm
                 wrong += 1
             End If
         End If
+        values(1, 0) = VGenFValueTextBox.Text
 
         If String.IsNullOrEmpty(RGenValueTextBox.Text) Then
             empty += 1
@@ -106,6 +111,7 @@ Public Class MainForm
                 wrong += 1
             End If
         End If
+        values(2, 0) = RGenValueTextBox.Text
 
         If String.IsNullOrEmpty(R1ValueTextBox.Text) Then
             empty += 1
@@ -115,6 +121,7 @@ Public Class MainForm
                 wrong += 1
             End If
         End If
+        values(3, 0) = R1ValueTextBox.Text
 
         If String.IsNullOrEmpty(C1ValueTextBox.Text) Then
             empty += 1
@@ -124,6 +131,7 @@ Public Class MainForm
                 wrong += 1
             End If
         End If
+        values(4, 0) = C1ValueTextBox.Text
 
         If String.IsNullOrEmpty(C2ValueTextBox.Text) Then
             empty += 1
@@ -133,6 +141,7 @@ Public Class MainForm
                 wrong += 1
             End If
         End If
+        values(5, 0) = C2ValueTextBox.Text
 
         If String.IsNullOrEmpty(L1ValueTextBox.Text) Then
             empty += 1
@@ -142,6 +151,7 @@ Public Class MainForm
                 wrong += 1
             End If
         End If
+        values(6, 0) = L1ValueTextBox.Text
 
         If String.IsNullOrEmpty(RwValueTextBox.Text) Then
             empty += 1
@@ -151,6 +161,7 @@ Public Class MainForm
                 wrong += 1
             End If
         End If
+        values(7, 0) = RwValueTextBox.Text
 
         'the following if statements check the comboboxes for a selected value
         If String.IsNullOrEmpty(VGenANotationComboBox.Text) Then
@@ -159,6 +170,7 @@ Public Class MainForm
             incorrect += 1
         Else
         End If
+        values(0, 1) = CStr(VGenANotationComboBox.SelectedItem)
 
         If String.IsNullOrEmpty(VGenFNotationComboBox.Text) Then
             empty += 1
@@ -166,6 +178,7 @@ Public Class MainForm
             incorrect += 1
         Else
         End If
+        values(1, 1) = CStr(VGenFNotationComboBox.SelectedItem)
 
         If String.IsNullOrEmpty(RGenNotationComboBox.Text) Then
             empty += 1
@@ -173,6 +186,7 @@ Public Class MainForm
             incorrect += 1
         Else
         End If
+        values(2, 1) = CStr(RGenNotationComboBox.SelectedItem)
 
         If String.IsNullOrEmpty(R1NotationComboBox.Text) Then
             empty += 1
@@ -180,6 +194,7 @@ Public Class MainForm
             incorrect += 1
         Else
         End If
+        values(3, 1) = CStr(R1NotationComboBox.SelectedItem)
 
         If String.IsNullOrEmpty(C1NotationComboBox.Text) Then
             empty += 1
@@ -187,6 +202,7 @@ Public Class MainForm
             incorrect += 1
         Else
         End If
+        values(4, 1) = CStr(C1NotationComboBox.SelectedItem)
 
         If String.IsNullOrEmpty(C2NotationComboBox.Text) Then
             empty += 1
@@ -194,6 +210,7 @@ Public Class MainForm
             incorrect += 1
         Else
         End If
+        values(5, 1) = CStr(C2NotationComboBox.SelectedItem)
 
         If String.IsNullOrEmpty(L1NotationComboBox.Text) Then
             empty += 1
@@ -201,6 +218,7 @@ Public Class MainForm
             incorrect += 1
         Else
         End If
+        values(6, 1) = CStr(L1NotationComboBox.SelectedItem)
 
         If String.IsNullOrEmpty(RwNotationComboBox.Text) Then
             empty += 1
@@ -208,6 +226,7 @@ Public Class MainForm
             incorrect += 1
         Else
         End If
+        values(7, 1) = CStr(RwNotationComboBox.SelectedItem)
 
         'the following if statements setup the warning message and popup box
         If empty > 0 Then
@@ -236,8 +255,7 @@ Public Class MainForm
 
     End Sub
 
-    Sub CalculateZTotal()                       'calculates ZTotal, probably can be optimized
-
+    Sub CalculateZTotal()
         'dimensions for specs needed for calculations
         Dim xC1 As Decimal
         Dim xC2 As Decimal
@@ -251,12 +269,12 @@ Public Class MainForm
         Dim zTX As Decimal      'total circiut impedance
         Dim zTY As Decimal
 
-        xC1 = CDec(1 / (2 * 3.1415 * CDec(VGenFValueTextBox.Text) * CDec(C1ValueTextBox.Text)))
-        xC2 = CDec(1 / (2 * 3.1415 * CDec(VGenFValueTextBox.Text) * CDec(C2ValueTextBox.Text)))
-        xL1 = CDec(1 / (2 * 3.1415 * CDec(VGenFValueTextBox.Text) * CDec(L1ValueTextBox.Text)))
-        zBX = CDec(RwValueTextBox.Text)
+        xC1 = CDec(1 / (2 * 3.1415 * CDec(values(1, 2)) * CDec(values(4, 2))))
+        xC2 = CDec(1 / (2 * 3.1415 * CDec(values(1, 2)) * CDec(values(5, 2))))
+        xL1 = CDec(2 * 3.1415 * CDec(values(1, 2)) * CDec(values(6, 2)))
+        zBX = CDec(values(7, 2))
         zBY = xL1
-        zSX = CDec(RGenValueTextBox.Text) + CDec(R1ValueTextBox.Text)
+        zSX = CDec(values(2, 2)) + CDec(values(3, 2))
         zSY = -1 * xC1              '-1 because it is capacitive
         'zp=((zBX+zBY)^-1 +(0-xC1)^-1)^-1
         Dim Z1_real As Decimal = zBX
@@ -272,7 +290,7 @@ Public Class MainForm
         zPY = -denom_imag / denom_mag
         zTX = zPX + zSX
         zTY = zPY + zSY
-        TestLabel.Text = $"Zparrallel = {zPX}, {zPY}i"
+        TestLabel.Text = $"ZTotal = {zTX}+{zTY}i"
     End Sub
 
     'display options---------------------------------------
@@ -292,25 +310,10 @@ Public Class MainForm
 
     End Sub
 
-    Private Sub C2NotationComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles C2NotationComboBox.SelectedIndexChanged
-        ' Get the selected item from the ComboBox
-        Dim selectedValue As String = C2NotationComboBox.SelectedItem.ToString()
-
-        ' Extract the exponent part from the string
-        Dim exponent As Integer = 0
-        If selectedValue.StartsWith("x10^") Then
-            ' Parse the exponent
-            Dim exponentString As String = selectedValue.Substring(4) ' Get the part after "x10^"
-            Integer.TryParse(exponentString, exponent) ' Convert to integer
-        End If
-
-        ' Calculate the actual value (for example, if you want to calculate 1 * 10^exponent)
-        Dim actualValue As Double = 1 * Math.Pow(10, exponent)
-
-        ' Display the result or use it for further calculations
-        TestLabel.Text = $"Selected Index: {C2NotationComboBox.SelectedIndex}, Value: {actualValue}"
-    End Sub
-
+    ''' <summary>
+    ''' Retrieves the value from the associated combo box to claculate the inteded user inputed value.
+    ''' The value is then stored in the values array to be using in calculations
+    ''' </summary>
     Sub Reals()
         Dim exponentString As String
         Dim exponent As Integer = 0
@@ -321,7 +324,7 @@ Public Class MainForm
         exponentString = selectedAmplitude.Substring(4)
         Integer.TryParse(exponentString, exponent)
         'calculates the actual value and inserts it into the array
-        values(0) = CDec(CDec(VGenAValueTextBox.Text) * Math.Pow(10, exponent))
+        values(0, 2) = CStr(CDec(VGenAValueTextBox.Text) * Math.Pow(10, exponent))
 
         'gets the selected item from the combobox for the generator frequency
         Dim selectedFrequency As String = VGenFNotationComboBox.SelectedItem.ToString()
@@ -329,7 +332,7 @@ Public Class MainForm
         exponentString = selectedFrequency.Substring(4)
         Integer.TryParse(exponentString, exponent)
         'calculates the actual value and inserts it into the array
-        values(1) = CDec(CDec(VGenFValueTextBox.Text) * Math.Pow(10, exponent))
+        values(1, 2) = CStr(CDec(VGenFValueTextBox.Text) * Math.Pow(10, exponent))
 
         'gets the selected item from the combobox for the generator resistance
         Dim selectedRGen As String = RGenNotationComboBox.SelectedItem.ToString()
@@ -337,7 +340,7 @@ Public Class MainForm
         exponentString = selectedRGen.Substring(4)
         Integer.TryParse(exponentString, exponent)
         'calculates the actual value and inserts it into the array
-        values(2) = CDec(CDec(RGenValueTextBox.Text) * Math.Pow(10, exponent))
+        values(2, 2) = CStr(CDec(RGenValueTextBox.Text) * Math.Pow(10, exponent))
 
         'gets the selected item from the combobox for the generator resistance
         Dim selectedR1 As String = R1NotationComboBox.SelectedItem.ToString()
@@ -345,7 +348,7 @@ Public Class MainForm
         exponentString = selectedR1.Substring(4)
         Integer.TryParse(exponentString, exponent)
         'calculates the actual value and inserts it into the array
-        values(3) = CDec(CDec(R1ValueTextBox.Text) * Math.Pow(10, exponent))
+        values(3, 2) = CStr(CDec(R1ValueTextBox.Text) * Math.Pow(10, exponent))
 
         'gets the selected item from the combobox for the generator resistance
         Dim selectedC1 As String = C1NotationComboBox.SelectedItem.ToString()
@@ -353,7 +356,7 @@ Public Class MainForm
         exponentString = selectedC1.Substring(4)
         Integer.TryParse(exponentString, exponent)
         'calculates the actual value and inserts it into the array
-        values(4) = CDec(CDec(C1ValueTextBox.Text) * Math.Pow(10, exponent))
+        values(4, 2) = CStr(CDec(C1ValueTextBox.Text) * Math.Pow(10, exponent))
 
         'gets the selected item from the combobox for the generator resistance
         Dim selectedC2 As String = C2NotationComboBox.SelectedItem.ToString()
@@ -361,7 +364,7 @@ Public Class MainForm
         exponentString = selectedC2.Substring(4)
         Integer.TryParse(exponentString, exponent)
         'calculates the actual value and inserts it into the array
-        values(5) = CDec(CDec(C2ValueTextBox.Text) * Math.Pow(10, exponent))
+        values(5, 2) = CStr(CDec(C2ValueTextBox.Text) * Math.Pow(10, exponent))
 
         'gets the selected item from the combobox for the generator resistance
         Dim selectedL1 As String = L1NotationComboBox.SelectedItem.ToString()
@@ -369,7 +372,7 @@ Public Class MainForm
         exponentString = selectedL1.Substring(4)
         Integer.TryParse(exponentString, exponent)
         'calculates the actual value and inserts it into the array
-        values(6) = CDec(CDec(L1ValueTextBox.Text) * Math.Pow(10, exponent))
+        values(6, 2) = CStr(CDec(L1ValueTextBox.Text) * Math.Pow(10, exponent))
 
         'gets the selected item from the combobox for the generator resistance
         Dim selectedRw As String = RwNotationComboBox.SelectedItem.ToString()
@@ -377,19 +380,22 @@ Public Class MainForm
         exponentString = selectedRw.Substring(4)
         Integer.TryParse(exponentString, exponent)
         'calculates the actual value and inserts it into the array
-        values(7) = CDec(CDec(RwValueTextBox.Text) * Math.Pow(10, exponent))
-
-        'test conversion by putting the values in a message box (remove once working)
-        Dim testString As String = String.Empty
-        For Each value In values
-            testString &= value.ToString() & "
-"
-        Next
-        MsgBox($"{testString}")
+        values(7, 2) = CStr(CDec(RwValueTextBox.Text) * Math.Pow(10, exponent))
     End Sub
 
+    Sub LabelSet()
+        VGenAmplitudeLabel.Text = $"{values(0, 0)}{values(0, 1)} Vpp"
+        VGenFrequencyLabel.Text = $"{values(1, 0)}{values(1, 1)} Hz"
+        RGenSchematicLabel.Text = $"{values(2, 0)}{values(2, 1)} Ω"
+        R1SchematicLabel.Text = $"{values(3, 0)}{values(3, 1)} Ω"
+        C1SchematicLabel.Text = $"{values(4, 0)}{values(4, 1)} F"
+        C2SchematicLabel.Text = $"{values(5, 0)}{values(5, 1)} F"
+        L1SchematicLabel.Text = $"{values(6, 0)}{values(6, 1)} L"
+        RwSchematicLabel.Text = $"{values(7, 0)}{values(7, 1)} Ω"
+    End Sub
 
+    'used for testing
     Private Sub TestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestToolStripMenuItem.Click
-        Reals()
+        LabelSet()
     End Sub
 End Class

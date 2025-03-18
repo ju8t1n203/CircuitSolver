@@ -61,6 +61,7 @@ Partial Class MainForm
         Me.CalculatedVoutLabel = New System.Windows.Forms.Label()
         Me.CalculatedVinLabel = New System.Windows.Forms.Label()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
+        Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.VGenFrequencyLabel = New System.Windows.Forms.Label()
         Me.VGenAmplitudeLabel = New System.Windows.Forms.Label()
@@ -79,7 +80,6 @@ Partial Class MainForm
         Me.ClearButton = New System.Windows.Forms.Button()
         Me.LogButton = New System.Windows.Forms.Button()
         Me.TestLabel = New System.Windows.Forms.Label()
-        Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComponentValuesGroupBox.SuspendLayout()
         Me.CalculationsGroupBox.SuspendLayout()
         Me.MenuStrip.SuspendLayout()
@@ -145,7 +145,7 @@ Partial Class MainForm
         'RwNotationComboBox
         '
         Me.RwNotationComboBox.FormattingEnabled = True
-        Me.RwNotationComboBox.Items.AddRange(New Object() {"x10^6", "x10^3", "x10^0", "x10^-3"})
+        Me.RwNotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3"})
         Me.RwNotationComboBox.Location = New System.Drawing.Point(145, 207)
         Me.RwNotationComboBox.Name = "RwNotationComboBox"
         Me.RwNotationComboBox.Size = New System.Drawing.Size(51, 21)
@@ -446,6 +446,12 @@ Partial Class MainForm
         Me.MenuStrip.TabIndex = 1
         Me.MenuStrip.Text = "MenuStrip1"
         '
+        'TestToolStripMenuItem
+        '
+        Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
+        Me.TestToolStripMenuItem.Size = New System.Drawing.Size(44, 21)
+        Me.TestToolStripMenuItem.Text = "test"
+        '
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImage = Global.CircuitSolver.My.Resources.Resources.Screenshot_2025_02_14_0928181
@@ -619,12 +625,6 @@ Partial Class MainForm
         Me.TestLabel.Size = New System.Drawing.Size(39, 13)
         Me.TestLabel.TabIndex = 8
         Me.TestLabel.Text = "Label1"
-        '
-        'TestToolStripMenuItem
-        '
-        Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
-        Me.TestToolStripMenuItem.Size = New System.Drawing.Size(44, 21)
-        Me.TestToolStripMenuItem.Text = "test"
         '
         'MainForm
         '

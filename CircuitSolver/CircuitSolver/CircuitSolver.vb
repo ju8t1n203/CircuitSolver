@@ -4,7 +4,7 @@ Option Strict On
 'Justin Bell
 'RCET3371
 'S25
-'link
+'https://github.com/ju8t1n203/CircuitSolver
 
 Imports System.Globalization
 Imports System.Math
@@ -435,6 +435,7 @@ Public Class MainForm
 
     End Sub
 
+    'opens related files from the menu
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         'opens the about text file
         Dim filePath As String = IO.Path.Combine(Application.StartupPath, "..\About.txt")

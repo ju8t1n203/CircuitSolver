@@ -92,9 +92,9 @@ Partial Class MainForm
         '
         'ExitButton
         '
-        Me.ExitButton.Location = New System.Drawing.Point(640, 440)
+        Me.ExitButton.Location = New System.Drawing.Point(581, 440)
         Me.ExitButton.Name = "ExitButton"
-        Me.ExitButton.Size = New System.Drawing.Size(149, 53)
+        Me.ExitButton.Size = New System.Drawing.Size(206, 53)
         Me.ExitButton.TabIndex = 7
         Me.ExitButton.Text = "E&xit"
         Me.ToolTip.SetToolTip(Me.ExitButton, "Closes the application")
@@ -360,7 +360,7 @@ Partial Class MainForm
         Me.CalculationsGroupBox.Controls.Add(Me.CalculatedVinLabel)
         Me.CalculationsGroupBox.Location = New System.Drawing.Point(12, 330)
         Me.CalculationsGroupBox.Name = "CalculationsGroupBox"
-        Me.CalculationsGroupBox.Size = New System.Drawing.Size(348, 163)
+        Me.CalculationsGroupBox.Size = New System.Drawing.Size(447, 163)
         Me.CalculationsGroupBox.TabIndex = 2
         Me.CalculationsGroupBox.TabStop = False
         Me.CalculationsGroupBox.Text = "Calculated Values"
@@ -489,9 +489,9 @@ Partial Class MainForm
         Me.VGenAmplitudeLabel.AutoSize = True
         Me.VGenAmplitudeLabel.Location = New System.Drawing.Point(27, 185)
         Me.VGenAmplitudeLabel.Name = "VGenAmplitudeLabel"
-        Me.VGenAmplitudeLabel.Size = New System.Drawing.Size(33, 13)
+        Me.VGenAmplitudeLabel.Size = New System.Drawing.Size(27, 13)
         Me.VGenAmplitudeLabel.TabIndex = 3
-        Me.VGenAmplitudeLabel.Text = "~Vpp"
+        Me.VGenAmplitudeLabel.Text = "~Vp"
         '
         'RGenSchematicLabel
         '
@@ -551,7 +551,7 @@ Partial Class MainForm
         '
         Me.CoordinatesGroupBox.Controls.Add(Me.PolarRadioButton)
         Me.CoordinatesGroupBox.Controls.Add(Me.RectangularRadioButton)
-        Me.CoordinatesGroupBox.Location = New System.Drawing.Point(366, 330)
+        Me.CoordinatesGroupBox.Location = New System.Drawing.Point(465, 330)
         Me.CoordinatesGroupBox.Name = "CoordinatesGroupBox"
         Me.CoordinatesGroupBox.Size = New System.Drawing.Size(109, 82)
         Me.CoordinatesGroupBox.TabIndex = 3
@@ -584,7 +584,7 @@ Partial Class MainForm
         '
         Me.DenotationGroupBox.Controls.Add(Me.RMSRadioButton)
         Me.DenotationGroupBox.Controls.Add(Me.PeakRadioButton)
-        Me.DenotationGroupBox.Location = New System.Drawing.Point(366, 418)
+        Me.DenotationGroupBox.Location = New System.Drawing.Point(465, 418)
         Me.DenotationGroupBox.Name = "DenotationGroupBox"
         Me.DenotationGroupBox.Size = New System.Drawing.Size(109, 75)
         Me.DenotationGroupBox.TabIndex = 4
@@ -615,18 +615,18 @@ Partial Class MainForm
         '
         'ClearButton
         '
-        Me.ClearButton.Location = New System.Drawing.Point(483, 440)
+        Me.ClearButton.Location = New System.Drawing.Point(581, 327)
         Me.ClearButton.Name = "ClearButton"
-        Me.ClearButton.Size = New System.Drawing.Size(149, 53)
+        Me.ClearButton.Size = New System.Drawing.Size(206, 53)
         Me.ClearButton.TabIndex = 5
         Me.ClearButton.Text = "&Clear"
         Me.ClearButton.UseVisualStyleBackColor = True
         '
         'LogButton
         '
-        Me.LogButton.Location = New System.Drawing.Point(483, 335)
+        Me.LogButton.Location = New System.Drawing.Point(581, 383)
         Me.LogButton.Name = "LogButton"
-        Me.LogButton.Size = New System.Drawing.Size(305, 100)
+        Me.LogButton.Size = New System.Drawing.Size(206, 53)
         Me.LogButton.TabIndex = 6
         Me.LogButton.Text = "&View Log"
         Me.LogButton.UseVisualStyleBackColor = True

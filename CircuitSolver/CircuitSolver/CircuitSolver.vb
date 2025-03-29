@@ -48,7 +48,7 @@ Public Class MainForm
         RwValueTextBox.ResetText()
         RwNotationComboBox.ResetText()
         'schematic labels---------------------------------------
-        VGenAmplitudeLabel.Text = "~Vpp"
+        VGenAmplitudeLabel.Text = "~Vp"
         VGenFrequencyLabel.Text = "~Hz"
         RGenSchematicLabel.Text = "~Ω"
         R1SchematicLabel.Text = "~Ω"
@@ -86,6 +86,7 @@ Public Class MainForm
             ActualValue()
             SetSchematicLabels()
             CalculateZTotal()
+            CalculateVoltages()
         End If
 
     End Sub
@@ -283,9 +284,40 @@ Public Class MainForm
     End Sub
 
     Sub CalculateVoltages()
-        values(9, 2) = CStr(CDec(values(8, 0)) - CDec(values(7, 2)))
-        TestLabel.Text = $"vinx: {values(8, 2)}"
-        'CalculatedVinLabel.Text = $"{CDec(values(0, 2) * (values())}"
+
+        If PeakRadioButton.Checked = True Then
+            'peak current in polar
+            values(8, 7) = CStr(CDbl(values(0, 2)) / CDbl(values(8, 0)))
+            values(8, 8) = CStr(CDbl(values(8, 1)) * -1)
+        Else
+            'rms current in polar
+            values(8, 7) = CStr(0.707 * CDbl(values(0, 2)) / CDbl(values(8, 0)))
+            values(8, 8) = CStr(CDbl(values(8, 1)) * -1)
+        End If
+        'total power in polar
+        values(0, 9) = CStr(CDbl(values(8, 7)) * CDbl(values(0, 2)))
+        values(0, 10) = values(8, 8)
+        'voltage of vin
+        Rect2Pol((CDec(values(8, 2)) - CDec(values(2, 2))), (CDec(values(8, 3))))
+
+        values(10, 3) = CStr(CDbl(values(9, 0)) * CDbl(values(8, 7)))
+        values(10, 4) = CStr(CDbl(values(9, 1)) + CDbl(values(8, 8)))
+
+        Pol2Rect(CDec(values(10, 3)), CDec(values(10, 4)))
+        values(10, 5) = values(9, 2)
+        values(10, 6) = values(9, 3)
+
+        'power of vin
+        values(10, 7) = CStr(CDbl(values(10, 3)) * CDbl(values(8, 7)))
+        values(10, 8) = CStr(CDbl(values(10, 4)) + CDbl(values(8, 8)))
+
+        Pol2Rect((CDec(values(10, 7))), (CDec(values(10, 8))))
+        values(10, 9) = values(9, 2)
+        values(10, 10) = values(9, 3)
+
+
+        CalculatedVinLabel.Text = $"Vin: Voltage: {FormatEngineering(CDbl(values(10, 3)))}Vp ∟ {FormatEngineering(CDbl(values(10, 4)))} ° | Power: {FormatEngineering(CDbl(values(10, 7)))} Wp ∟ {FormatEngineering(CDbl(values(10, 8)))} °"
+
     End Sub
 
     'conversions-------------------------------------------
@@ -339,13 +371,13 @@ Public Class MainForm
 
     'extra subroutines----------------------------------
     Sub SetSchematicLabels()
-        VGenAmplitudeLabel.Text = $"{FormatEngineering(CDbl(values(0, 2)))} Vpp"
+        VGenAmplitudeLabel.Text = $"{FormatEngineering(CDbl(values(0, 2)))} Vp"
         VGenFrequencyLabel.Text = $"{FormatEngineering(CDbl(values(1, 2)))} Hz"
         RGenSchematicLabel.Text = $"{FormatEngineering(CDbl(values(2, 2)))} Ω"
         R1SchematicLabel.Text = $"{FormatEngineering(CDbl(values(3, 2)))} Ω"
         C1SchematicLabel.Text = $"{FormatEngineering(CDbl(values(4, 2)))} F"
         C2SchematicLabel.Text = $"{FormatEngineering(CDbl(values(5, 2)))} F"
-        L1SchematicLabel.Text = $"{FormatEngineering(CDbl(values(6, 2)))} L"
+        L1SchematicLabel.Text = $"{FormatEngineering(CDbl(values(6, 2)))} H"
         RwSchematicLabel.Text = $"{FormatEngineering(CDbl(values(7, 2)))} Ω"
     End Sub
 

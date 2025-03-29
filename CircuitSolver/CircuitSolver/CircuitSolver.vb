@@ -213,73 +213,31 @@ Public Class MainForm
 
     End Sub
 
-    Sub ActualValue() 'optimize this
-        Dim exponentString As String
+    Function CalculateReal(base As TextBox, tothe As ComboBox) As String
+        Dim _real As String = ""
+        Dim exponentString As String = ""
         Dim exponent As Integer = 0
 
-        'gets the selected item from the combobox for the generator amplitude
-        Dim selectedAmplitude As String = VGenANotationComboBox.SelectedItem.ToString()
-        'grabs the exponent value and converts to a usable number
-        exponentString = selectedAmplitude.Substring(4)
+        'makes the combobox value usable
+        exponentString = tothe.SelectedItem.ToString.Substring(4)
         Integer.TryParse(exponentString, exponent)
-        'calculates the actual value and inserts it into the array
-        values(0, 2) = CStr(CDec(VGenAValueTextBox.Text) * Math.Pow(10, exponent))
 
-        'gets the selected item from the combobox for the generator frequency
-        Dim selectedFrequency As String = VGenFNotationComboBox.SelectedItem.ToString()
-        'grabs the exponent value and converts to a usable number
-        exponentString = selectedFrequency.Substring(4)
-        Integer.TryParse(exponentString, exponent)
-        'calculates the actual value and inserts it into the array
-        values(1, 2) = CStr(CDec(VGenFValueTextBox.Text) * Math.Pow(10, exponent))
+        'calculates the actual value
+        _real = CStr(CDec(base.Text) * Math.Pow(10, exponent))
+        Return _real
+    End Function
 
-        'gets the selected item from the combobox for the generator resistance
-        Dim selectedRGen As String = RGenNotationComboBox.SelectedItem.ToString()
-        'grabs the exponent value and converts to a usable number
-        exponentString = selectedRGen.Substring(4)
-        Integer.TryParse(exponentString, exponent)
-        'calculates the actual value and inserts it into the array
-        values(2, 2) = CStr(CDec(RGenValueTextBox.Text) * Math.Pow(10, exponent))
+    Sub ActualValue()
 
-        'gets the selected item from the combobox for the generator resistance
-        Dim selectedR1 As String = R1NotationComboBox.SelectedItem.ToString()
-        'grabs the exponent value and converts to a usable number
-        exponentString = selectedR1.Substring(4)
-        Integer.TryParse(exponentString, exponent)
-        'calculates the actual value and inserts it into the array
-        values(3, 2) = CStr(CDec(R1ValueTextBox.Text) * Math.Pow(10, exponent))
+        values(0, 2) = CalculateReal(VGenAValueTextBox, VGenANotationComboBox)
+        values(1, 2) = CalculateReal(VGenFValueTextBox, VGenFNotationComboBox)
+        values(2, 2) = CalculateReal(RGenValueTextBox, RGenNotationComboBox)
+        values(3, 2) = CalculateReal(R1ValueTextBox, R1NotationComboBox)
+        values(4, 2) = CalculateReal(C1ValueTextBox, C1NotationComboBox)
+        values(5, 2) = CalculateReal(C2ValueTextBox, C2NotationComboBox)
+        values(6, 2) = CalculateReal(L1ValueTextBox, L1NotationComboBox)
+        values(7, 2) = CalculateReal(RwValueTextBox, RwNotationComboBox)
 
-        'gets the selected item from the combobox for the generator resistance
-        Dim selectedC1 As String = C1NotationComboBox.SelectedItem.ToString()
-        'grabs the exponent value and converts to a usable number
-        exponentString = selectedC1.Substring(4)
-        Integer.TryParse(exponentString, exponent)
-        'calculates the actual value and inserts it into the array
-        values(4, 2) = CStr(CDec(C1ValueTextBox.Text) * Math.Pow(10, exponent))
-
-        'gets the selected item from the combobox for the generator resistance
-        Dim selectedC2 As String = C2NotationComboBox.SelectedItem.ToString()
-        'grabs the exponent value and converts to a usable number
-        exponentString = selectedC2.Substring(4)
-        Integer.TryParse(exponentString, exponent)
-        'calculates the actual value and inserts it into the array
-        values(5, 2) = CStr(CDec(C2ValueTextBox.Text) * Math.Pow(10, exponent))
-
-        'gets the selected item from the combobox for the generator resistance
-        Dim selectedL1 As String = L1NotationComboBox.SelectedItem.ToString()
-        'grabs the exponent value and converts to a usable number
-        exponentString = selectedL1.Substring(4)
-        Integer.TryParse(exponentString, exponent)
-        'calculates the actual value and inserts it into the array
-        values(6, 2) = CStr(CDec(L1ValueTextBox.Text) * Math.Pow(10, exponent))
-
-        'gets the selected item from the combobox for the generator resistance
-        Dim selectedRw As String = RwNotationComboBox.SelectedItem.ToString()
-        'grabs the exponent value and converts to a usable number
-        exponentString = selectedRw.Substring(4)
-        Integer.TryParse(exponentString, exponent)
-        'calculates the actual value and inserts it into the array
-        values(7, 2) = CStr(CDec(RwValueTextBox.Text) * Math.Pow(10, exponent))
     End Sub
 
     Sub Rect2Pol(x As Decimal, y As Decimal)

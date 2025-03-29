@@ -240,6 +240,55 @@ Public Class MainForm
 
     End Sub
 
+    Sub CalculateZTotal()
+        'dimensions for specs needed for calculations
+        Dim xC1 As Decimal
+        Dim xC2 As Decimal
+        Dim xL1 As Decimal
+        Dim zBX As Decimal       'zb is the impedance of L1 + Rw
+        Dim zBY As Decimal
+        Dim zSX As Decimal      'zs is the impedance of RGen + R1 + C1
+        Dim zSY As Decimal
+        Dim zPX As Decimal       'zp is the impedance of zb//c1
+        Dim zPY As Decimal
+        Dim zTX As Decimal      'total circiut impedance
+        Dim zTY As Decimal
+
+        xC1 = CDec(1 / (2 * 3.1415 * CDec(values(1, 2)) * CDec(values(4, 2))))
+        xC2 = CDec(1 / (2 * 3.1415 * CDec(values(1, 2)) * CDec(values(5, 2))))
+        xL1 = CDec(2 * 3.1415 * CDec(values(1, 2)) * CDec(values(6, 2)))
+        zBX = CDec(values(7, 2))
+        zBY = xL1
+        zSX = CDec(values(2, 2)) + CDec(values(3, 2))
+        zSY = -1 * xC1              '-1 because it is capacitive
+
+        Dim Z1_real As Decimal = zBX
+        Dim Z1_imag As Decimal = zBY
+        Dim Z2_real As Decimal = 0
+        Dim Z2_imag As Decimal = -xC2
+
+        Dim denom_real As Decimal = CDec((Z1_real / (Z1_real ^ 2 + Z1_imag ^ 2)) + (Z2_real / (Z2_real ^ 2 + Z2_imag ^ 2)))
+        Dim denom_imag As Decimal = CDec((-Z1_imag / (Z1_real ^ 2 + Z1_imag ^ 2)) + (-Z2_imag / (Z2_real ^ 2 + Z2_imag ^ 2)))
+
+        Dim denom_mag As Decimal = CDec(denom_real ^ 2 + denom_imag ^ 2)
+        zPX = denom_real / denom_mag
+        zPY = -denom_imag / denom_mag
+        zTX = zPX + zSX
+        zTY = zPY + zSY
+        values(8, 2) = CStr(zTX)
+        values(8, 3) = CStr(zTY)
+        Rect2Pol(zTX, zTY)
+        values(8, 0) = values(9, 0)
+        values(8, 1) = values(9, 1)
+    End Sub
+
+    Sub CalculateVoltages()
+        values(9, 2) = CStr(CDec(values(8, 0)) - CDec(values(7, 2)))
+        TestLabel.Text = $"vinx: {values(8, 2)}"
+        'CalculatedVinLabel.Text = $"{CDec(values(0, 2) * (values())}"
+    End Sub
+
+    'conversions-------------------------------------------
     Sub Rect2Pol(x As Decimal, y As Decimal)
         'calculate the radius
         Dim radius As Decimal = CDec(Sqrt(x * x + y * y))
@@ -265,59 +314,19 @@ Public Class MainForm
 
     End Sub
 
-    Sub CalculateZTotal()
-        'dimensions for specs needed for calculations
-        Dim xC1 As Decimal
-        Dim xC2 As Decimal
-        Dim xL1 As Decimal
-        Dim zBX As Decimal       'zb is the impedance of L1 + Rw
-        Dim zBY As Decimal
-        Dim zSX As Decimal      'zs is the impedance of RGen + R1 + C1
-        Dim zSY As Decimal
-        Dim zPX As Decimal       'zp is the impedance of zb//c1
-        Dim zPY As Decimal
-        Dim zTX As Decimal      'total circiut impedance
-        Dim zTY As Decimal
-
-        xC1 = CDec(1 / (2 * 3.1415 * CDec(values(1, 2)) * CDec(values(4, 2))))
-        xC2 = CDec(1 / (2 * 3.1415 * CDec(values(1, 2)) * CDec(values(5, 2))))
-        xL1 = CDec(2 * 3.1415 * CDec(values(1, 2)) * CDec(values(6, 2)))
-        zBX = CDec(values(7, 2))
-        zBY = xL1
-        zSX = CDec(values(2, 2)) + CDec(values(3, 2))
-        zSY = -1 * xC1              '-1 because it is capacitive
-        'zp=((zBX+zBY)^-1 +(0-xC1)^-1)^-1
-        Dim Z1_real As Decimal = zBX
-        Dim Z1_imag As Decimal = zBY
-        Dim Z2_real As Decimal = 0
-        Dim Z2_imag As Decimal = -xC2
-
-        Dim denom_real As Decimal = CDec((Z1_real / (Z1_real ^ 2 + Z1_imag ^ 2)) + (Z2_real / (Z2_real ^ 2 + Z2_imag ^ 2)))
-        Dim denom_imag As Decimal = CDec((-Z1_imag / (Z1_real ^ 2 + Z1_imag ^ 2)) + (-Z2_imag / (Z2_real ^ 2 + Z2_imag ^ 2)))
-
-        Dim denom_mag As Decimal = CDec(denom_real ^ 2 + denom_imag ^ 2)
-        zPX = denom_real / denom_mag
-        zPY = -denom_imag / denom_mag
-        zTX = zPX + zSX
-        zTY = zPY + zSY
-        values(8, 2) = CStr(zTX)
-        values(8, 3) = CStr(zTY)
-
-    End Sub
-
-    Sub CalculateVoltages()
-        values(9, 2) = CStr(CDec(values(8, 0)) - CDec(values(7, 2)))
-        TestLabel.Text = $"vinx: {values(8, 2)}"
-        'CalculatedVinLabel.Text = $"{CDec(values(0, 2) * (values())}"
-    End Sub
+    Function FormatEngineering(value As Double) As String
+        Dim exponent As Double = Math.Floor(Math.Log10(Math.Abs(value)) / 3) * 3
+        Dim mantissa As Double = value / Math.Pow(10, exponent)
+        Return String.Format("{0:0.###}E{1}", mantissa, exponent)
+    End Function
 
     'display options---------------------------------------
     Private Sub PolarRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles PolarRadioButton.CheckedChanged
-
+        TestLabel.Text = $"ZTotal = {FormatEngineering(CDbl(values(8, 0)))} ∟ {FormatEngineering(CDbl(values(8, 1)))} °"
     End Sub
 
     Private Sub RectangularRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles RectangularRadioButton.CheckedChanged
-
+        TestLabel.Text = $"ZTotal = {FormatEngineering(CDbl(values(8, 2)))} + {FormatEngineering(CDbl(values(8, 3)))} i"
     End Sub
 
     Private Sub PeakRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles PeakRadioButton.CheckedChanged
@@ -330,14 +339,14 @@ Public Class MainForm
 
     'extra subroutines----------------------------------
     Sub SetSchematicLabels()
-        VGenAmplitudeLabel.Text = $"{values(0, 0)}{values(0, 1)} Vpp"
-        VGenFrequencyLabel.Text = $"{values(1, 0)}{values(1, 1)} Hz"
-        RGenSchematicLabel.Text = $"{values(2, 0)}{values(2, 1)} Ω"
-        R1SchematicLabel.Text = $"{values(3, 0)}{values(3, 1)} Ω"
-        C1SchematicLabel.Text = $"{values(4, 0)}{values(4, 1)} F"
-        C2SchematicLabel.Text = $"{values(5, 0)}{values(5, 1)} F"
-        L1SchematicLabel.Text = $"{values(6, 0)}{values(6, 1)} L"
-        RwSchematicLabel.Text = $"{values(7, 0)}{values(7, 1)} Ω"
+        VGenAmplitudeLabel.Text = $"{FormatEngineering(CDbl(values(0, 2)))} Vpp"
+        VGenFrequencyLabel.Text = $"{FormatEngineering(CDbl(values(1, 2)))} Hz"
+        RGenSchematicLabel.Text = $"{FormatEngineering(CDbl(values(2, 2)))} Ω"
+        R1SchematicLabel.Text = $"{FormatEngineering(CDbl(values(3, 2)))} Ω"
+        C1SchematicLabel.Text = $"{FormatEngineering(CDbl(values(4, 2)))} F"
+        C2SchematicLabel.Text = $"{FormatEngineering(CDbl(values(5, 2)))} F"
+        L1SchematicLabel.Text = $"{FormatEngineering(CDbl(values(6, 2)))} L"
+        RwSchematicLabel.Text = $"{FormatEngineering(CDbl(values(7, 2)))} Ω"
     End Sub
 
     Private Sub TestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestToolStripMenuItem.Click

@@ -76,10 +76,11 @@ Public Class MainForm
         _continue = False
         values(9, 5) = "0"
         values(9, 6) = "0"
+        values(9, 7) = "0"
         CheckValues() 'error handling
-
+        MakeMsg() 'if any errors are present they will be displayed to the user
         If _continue = False Then
-            'check failed do nothing
+            'check failed message displays
         Else
             'check passed start calculations
             ActualValue()
@@ -90,6 +91,39 @@ Public Class MainForm
     End Sub
 
     'calculation subroutines ---------------------------
+
+    Sub MakeMsg()
+
+        'the following if statements setup the warning message and popup box
+        Dim empty As Integer = CInt(values(9, 5))             'for when a text/combo box is empty
+        Dim wrong As Integer = CInt(values(9, 6))             'for when a textbox does not contain a decimal number
+        Dim incorrect As Integer = CInt(values(9, 7))        'for when a combobox contains a string outside the selection options
+        Dim warning As String = ""                                    'the message to be displayed if any information is incorrect
+
+        If empty > 0 Then
+            warning = $"{empty} fields are empty, ensure all fields are full."
+        End If
+
+        If wrong > 0 Then
+            If warning <> "" Then
+                warning &= Environment.NewLine
+            End If
+            warning &= $"{wrong} values contain letters, ensure all values are numbers."
+        End If
+
+        If incorrect > 0 Then
+            If warning <> "" Then
+                warning &= Environment.NewLine
+            End If
+            warning &= $"{incorrect} magnitudes are incorrect, please choose a value from the drop-down."
+        End If
+
+        If warning <> "" Then
+            MsgBox(warning)
+        Else
+            _continue = True
+        End If
+    End Sub
 
     Sub VerifyStrings(_string As String)
         Dim empty As Integer = CInt(values(9, 5))        'for when a textbox is empty
@@ -176,36 +210,6 @@ Public Class MainForm
 
         VerifyCombos(RwNotationComboBox)
         values(7, 1) = CStr(RwNotationComboBox.SelectedItem)
-
-        'the following if statements setup the warning message and popup box
-        Dim empty As Integer = CInt(values(9, 5))             'for when a text/combo box is empty
-        Dim wrong As Integer = CInt(values(9, 6))             'for when a textbox does not contain a decimal number
-        Dim incorrect As Integer = CInt(values(9, 7))        'for when a combobox contains a string outside the selection options
-        Dim warning As String = ""                                    'the message to be displayed if any information is incorrect
-
-        If empty > 0 Then
-            warning = $"{empty} fields are empty, ensure all fields are full."
-        End If
-
-        If wrong > 0 Then
-            If warning <> "" Then
-                warning &= Environment.NewLine
-            End If
-            warning &= $"{wrong} values contain letters, ensure all values are numbers."
-        End If
-
-        If incorrect > 0 Then
-            If warning <> "" Then
-                warning &= Environment.NewLine
-            End If
-            warning &= $"{incorrect} magnitudes are incorrect, please choose a value from the drop-down."
-        End If
-
-        If warning <> "" Then
-            MsgBox(warning)
-        Else
-            _continue = True
-        End If
 
     End Sub
 

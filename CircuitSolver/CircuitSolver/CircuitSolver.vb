@@ -1,10 +1,11 @@
-﻿Option Compare Text
-Option Explicit On
-Option Strict On
-'Justin Bell
+﻿'Justin Bell
 'RCET3371
 'S25
 'https://github.com/ju8t1n203/CircuitSolver
+
+Option Compare Text
+Option Explicit On
+Option Strict On
 
 Imports System.Globalization
 Imports System.Math
@@ -16,8 +17,8 @@ Imports System.Math
 ' [ ] denotation radio button functionality
 
 Public Class MainForm
-    Dim _continue As Boolean
-    Private values(8, 4) As String      'refer to the "About" in the menu strip for array content layout
+    Private _continue As Boolean
+    Private values(11, 10) As String      'refer to the "About" in the menu strip for array content layout
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -73,6 +74,8 @@ Public Class MainForm
 
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
         _continue = False
+        values(9, 5) = "0"
+        values(9, 6) = "0"
         CheckValues() 'error handling
 
         If _continue = False Then
@@ -87,159 +90,99 @@ Public Class MainForm
     End Sub
 
     'calculation subroutines ---------------------------
-    Sub CheckValues()
-        Dim empty As Integer        'for when a text/combo box is empty
-        Dim wrong As Integer        'for when a textbox does not contain a decimal number
-        Dim incorrect As Integer   'for when a combobox contains a string outside the selection options
-        Dim warning As String       'the message to be displayed if any information is incorrect
 
-        'the following if statements check each textbox for a number
-        If String.IsNullOrEmpty(VGenAValueTextBox.Text) Then
+    Sub VerifyStrings(_string As String)
+        Dim empty As Integer = CInt(values(9, 5))        'for when a textbox is empty
+        Dim wrong As Integer = CInt(values(9, 6))        'for when a textbox does not contain a decimal number
+
+        If String.IsNullOrEmpty(_string) Then
             empty += 1
         Else
-            If Decimal.TryParse(VGenAValueTextBox.Text, Nothing) Then
+            If Decimal.TryParse(_string, Nothing) Then
             Else
                 wrong += 1
             End If
         End If
+
+        values(9, 5) = CStr(empty)
+        values(9, 6) = CStr(wrong)
+
+    End Sub
+
+    Sub VerifyCombos(combo As ComboBox)
+        Dim empty As Integer = CInt(values(9, 5))               'for when a combobox is empty
+        Dim incorrect As Integer = CInt(values(9, 7))          'for when a combobox contains a string outside the selection options
+
+        If String.IsNullOrEmpty(combo.Text) Then
+            empty += 1
+        ElseIf Not combo.Items.Contains(combo.Text) Then
+            incorrect += 1
+        Else
+        End If
+
+        values(9, 5) = CStr(empty)
+        values(9, 7) = CStr(incorrect)
+
+    End Sub
+
+    Sub CheckValues()
+
+        'the following if statements check the textboxes for valid data
+        VerifyStrings(VGenAValueTextBox.Text)
         values(0, 0) = VGenAValueTextBox.Text
 
-        If String.IsNullOrEmpty(VGenFValueTextBox.Text) Then
-            empty += 1
-        Else
-            If Decimal.TryParse(VGenFValueTextBox.Text, Nothing) Then
-            Else
-                wrong += 1
-            End If
-        End If
+        VerifyStrings(VGenFValueTextBox.Text)
         values(1, 0) = VGenFValueTextBox.Text
 
-        If String.IsNullOrEmpty(RGenValueTextBox.Text) Then
-            empty += 1
-        Else
-            If Decimal.TryParse(RGenValueTextBox.Text, Nothing) Then
-            Else
-                wrong += 1
-            End If
-        End If
+        VerifyStrings(RGenValueTextBox.Text)
         values(2, 0) = RGenValueTextBox.Text
 
-        If String.IsNullOrEmpty(R1ValueTextBox.Text) Then
-            empty += 1
-        Else
-            If Decimal.TryParse(R1ValueTextBox.Text, Nothing) Then
-            Else
-                wrong += 1
-            End If
-        End If
+        VerifyStrings(R1ValueTextBox.Text)
         values(3, 0) = R1ValueTextBox.Text
 
-        If String.IsNullOrEmpty(C1ValueTextBox.Text) Then
-            empty += 1
-        Else
-            If Decimal.TryParse(C1ValueTextBox.Text, Nothing) Then
-            Else
-                wrong += 1
-            End If
-        End If
+        VerifyStrings(C1ValueTextBox.Text)
         values(4, 0) = C1ValueTextBox.Text
 
-        If String.IsNullOrEmpty(C2ValueTextBox.Text) Then
-            empty += 1
-        Else
-            If Decimal.TryParse(C2ValueTextBox.Text, Nothing) Then
-            Else
-                wrong += 1
-            End If
-        End If
+        VerifyStrings(C2ValueTextBox.Text)
         values(5, 0) = C2ValueTextBox.Text
 
-        If String.IsNullOrEmpty(L1ValueTextBox.Text) Then
-            empty += 1
-        Else
-            If Decimal.TryParse(L1ValueTextBox.Text, Nothing) Then
-            Else
-                wrong += 1
-            End If
-        End If
+        VerifyStrings(L1ValueTextBox.Text)
         values(6, 0) = L1ValueTextBox.Text
 
-        If String.IsNullOrEmpty(RwValueTextBox.Text) Then
-            empty += 1
-        Else
-            If Decimal.TryParse(RwValueTextBox.Text, Nothing) Then
-            Else
-                wrong += 1
-            End If
-        End If
+        VerifyStrings(RwValueTextBox.Text)
         values(7, 0) = RwValueTextBox.Text
 
         'the following if statements check the comboboxes for a selected value
-        If String.IsNullOrEmpty(VGenANotationComboBox.Text) Then
-            empty += 1
-        ElseIf Not VGenANotationComboBox.Items.Contains(VGenANotationComboBox.Text) Then
-            incorrect += 1
-        Else
-        End If
+        VerifyCombos(VGenANotationComboBox)
         values(0, 1) = CStr(VGenANotationComboBox.SelectedItem)
 
-        If String.IsNullOrEmpty(VGenFNotationComboBox.Text) Then
-            empty += 1
-        ElseIf Not VGenFNotationComboBox.Items.Contains(VGenFNotationComboBox.Text) Then
-            incorrect += 1
-        Else
-        End If
+        VerifyCombos(VGenFNotationComboBox)
         values(1, 1) = CStr(VGenFNotationComboBox.SelectedItem)
 
-        If String.IsNullOrEmpty(RGenNotationComboBox.Text) Then
-            empty += 1
-        ElseIf Not RGenNotationComboBox.Items.Contains(RGenNotationComboBox.Text) Then
-            incorrect += 1
-        Else
-        End If
+        VerifyCombos(RGenNotationComboBox)
         values(2, 1) = CStr(RGenNotationComboBox.SelectedItem)
 
-        If String.IsNullOrEmpty(R1NotationComboBox.Text) Then
-            empty += 1
-        ElseIf Not R1NotationComboBox.Items.Contains(R1NotationComboBox.Text) Then
-            incorrect += 1
-        Else
-        End If
+        VerifyCombos(R1NotationComboBox)
         values(3, 1) = CStr(R1NotationComboBox.SelectedItem)
 
-        If String.IsNullOrEmpty(C1NotationComboBox.Text) Then
-            empty += 1
-        ElseIf Not C1NotationComboBox.Items.Contains(C1NotationComboBox.Text) Then
-            incorrect += 1
-        Else
-        End If
+        VerifyCombos(C1NotationComboBox)
         values(4, 1) = CStr(C1NotationComboBox.SelectedItem)
 
-        If String.IsNullOrEmpty(C2NotationComboBox.Text) Then
-            empty += 1
-        ElseIf Not C2NotationComboBox.Items.Contains(C2NotationComboBox.Text) Then
-            incorrect += 1
-        Else
-        End If
+        VerifyCombos(C2NotationComboBox)
         values(5, 1) = CStr(C2NotationComboBox.SelectedItem)
 
-        If String.IsNullOrEmpty(L1NotationComboBox.Text) Then
-            empty += 1
-        ElseIf Not L1NotationComboBox.Items.Contains(L1NotationComboBox.Text) Then
-            incorrect += 1
-        Else
-        End If
+        VerifyCombos(L1NotationComboBox)
         values(6, 1) = CStr(L1NotationComboBox.SelectedItem)
 
-        If String.IsNullOrEmpty(RwNotationComboBox.Text) Then
-            empty += 1
-        ElseIf Not RwNotationComboBox.Items.Contains(RwNotationComboBox.Text) Then
-            incorrect += 1
-        Else
-        End If
+        VerifyCombos(RwNotationComboBox)
         values(7, 1) = CStr(RwNotationComboBox.SelectedItem)
 
         'the following if statements setup the warning message and popup box
+        Dim empty As Integer = CInt(values(9, 5))             'for when a text/combo box is empty
+        Dim wrong As Integer = CInt(values(9, 6))             'for when a textbox does not contain a decimal number
+        Dim incorrect As Integer = CInt(values(9, 7))        'for when a combobox contains a string outside the selection options
+        Dim warning As String = ""                                    'the message to be displayed if any information is incorrect
+
         If empty > 0 Then
             warning = $"{empty} fields are empty, ensure all fields are full."
         End If
@@ -266,7 +209,7 @@ Public Class MainForm
 
     End Sub
 
-    Sub ActualValue()
+    Sub ActualValue() 'optimize this
         Dim exponentString As String
         Dim exponent As Integer = 0
 

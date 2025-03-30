@@ -286,36 +286,30 @@ Public Class MainForm
     Function MakeString(item As Integer) As String
         Dim _string As String
         Dim v1 As Integer = 0
-        Dim v2 As String = ""
-        Dim v3 As Integer = 0
-        Dim v4 As String = ""
+        Dim v2 As Integer = 0
         Dim p1 As Integer = 0
-        Dim p2 As String = ""
-        Dim p3 As Integer = 0
-        Dim p4 As String = ""
+        Dim p2 As Integer = 0
+        Dim s1 As String = ""
+        Dim s2 As String = ""
 
         If PolarRadioButton.Checked = True Then
             v1 = 3
-            v2 = "∟"
-            v3 = 4
-            v4 = "°"
+            v2 = 4
             p1 = 7
-            p2 = "∟"
-            p3 = 8
-            p4 = "°"
+            p2 = 8
+            s1 = "∟"
+            s2 = "°"
         Else
             v1 = 5
-            v2 = "+"
-            v3 = 6
-            v4 = "i"
+            v2 = 6
             p1 = 9
-            p2 = "+"
-            p3 = 10
-            p4 = "i"
+            p2 = 10
+            s1 = "+"
+            s2 = "i"
         End If
 
         Try
-            _string = $"Voltage: {FormatEngineering(CDbl(values(item, v1)))}V {v2} {FormatEngineering(CDbl(values(item, v3)))} {v4} | Power: {FormatEngineering(CDbl(values(item, p1)))} W {p2} {FormatEngineering(CDbl(values(item, p3)))} {p4}"
+            _string = $"Voltage: {FormatEngineering(CDbl(values(item, v1)))}V {s1} {FormatEngineering(CDbl(values(item, v2)))} {s2} | Power: {FormatEngineering(CDbl(values(item, p1)))} W {s1} {FormatEngineering(CDbl(values(item, p2)))} {s2}"
         Catch ex As Exception
             _string = "no worky"
         End Try
@@ -359,9 +353,18 @@ Public Class MainForm
         CalculatedVinLabel.Text = $"Vin: {MakeString(10)}"
 
         'voltage of RGen
-        values(2, 3) = ""
-        values(2, 4) = ""
+        values(2, 3) = $"{CDbl(values(2, 2)) * CDbl(values(8, 7))}"
+        values(2, 4) = $"{values(8, 8)}"
+        Pol2Rect((CDec(values(2, 3))), (CDec(values(2, 4))))
+        values(2, 5) = values(9, 2)
+        values(2, 6) = values(9, 3)
+
         'power of RGen
+        values(2, 7) = $"{CDbl(values(2, 3)) * CDbl(values(8, 7))}"
+        values(2, 8) = values(8, 8)
+        Pol2Rect((CDec(values(2, 7))), (CDec(values(2, 8))))
+        values(2, 9) = values(9, 2)
+        values(2, 10) = values(9, 2)
 
         CalculatedRwLabel.Text = $"RGen: {MakeString(2)}"
 

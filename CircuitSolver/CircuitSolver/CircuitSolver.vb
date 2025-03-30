@@ -283,6 +283,46 @@ Public Class MainForm
         values(8, 1) = values(9, 1)
     End Sub
 
+    Function MakeString(item As Integer) As String
+        Dim _string As String
+        Dim v1 As Integer = 0
+        Dim v2 As String = ""
+        Dim v3 As Integer = 0
+        Dim v4 As String = ""
+        Dim p1 As Integer = 0
+        Dim p2 As String = ""
+        Dim p3 As Integer = 0
+        Dim p4 As String = ""
+
+        If PolarRadioButton.Checked = True Then
+            v1 = 3
+            v2 = "∟"
+            v3 = 4
+            v4 = "°"
+            p1 = 7
+            p2 = "∟"
+            p3 = 8
+            p4 = "°"
+        Else
+            v1 = 5
+            v2 = "+"
+            v3 = 6
+            v4 = "i"
+            p1 = 9
+            p2 = "+"
+            p3 = 10
+            p4 = "i"
+        End If
+
+        Try
+            _string = $"Voltage: {FormatEngineering(CDbl(values(item, v1)))}V {v2} {FormatEngineering(CDbl(values(item, v3)))} {v4} | Power: {FormatEngineering(CDbl(values(item, p1)))} W {p2} {FormatEngineering(CDbl(values(item, p3)))} {p4}"
+        Catch ex As Exception
+            _string = "no worky"
+        End Try
+
+        Return _string
+    End Function
+
     Sub CalculateVoltages()
 
         If PeakRadioButton.Checked = True Then
@@ -297,6 +337,7 @@ Public Class MainForm
         'total power in polar
         values(0, 9) = CStr(CDbl(values(8, 7)) * CDbl(values(0, 2)))
         values(0, 10) = values(8, 8)
+
         'voltage of vin
         Rect2Pol((CDec(values(8, 2)) - CDec(values(2, 2))), (CDec(values(8, 3))))
 
@@ -315,8 +356,14 @@ Public Class MainForm
         values(10, 9) = values(9, 2)
         values(10, 10) = values(9, 3)
 
+        CalculatedVinLabel.Text = $"Vin: {MakeString(10)}"
 
-        CalculatedVinLabel.Text = $"Vin: Voltage: {FormatEngineering(CDbl(values(10, 3)))}Vp ∟ {FormatEngineering(CDbl(values(10, 4)))} ° | Power: {FormatEngineering(CDbl(values(10, 7)))} Wp ∟ {FormatEngineering(CDbl(values(10, 8)))} °"
+        'voltage of RGen
+        values(2, 3) = ""
+        values(2, 4) = ""
+        'power of RGen
+
+        CalculatedRwLabel.Text = $"RGen: {MakeString(2)}"
 
     End Sub
 
@@ -355,18 +402,28 @@ Public Class MainForm
     'display options---------------------------------------
     Private Sub PolarRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles PolarRadioButton.CheckedChanged
         TestLabel.Text = $"ZTotal = {FormatEngineering(CDbl(values(8, 0)))} ∟ {FormatEngineering(CDbl(values(8, 1)))} °"
+        If _continue = True Then
+            CalculateVoltages()
+        End If
     End Sub
 
     Private Sub RectangularRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles RectangularRadioButton.CheckedChanged
         TestLabel.Text = $"ZTotal = {FormatEngineering(CDbl(values(8, 2)))} + {FormatEngineering(CDbl(values(8, 3)))} i"
+        If _continue = True Then
+            CalculateVoltages()
+        End If
     End Sub
 
     Private Sub PeakRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles PeakRadioButton.CheckedChanged
-
+        If _continue = True Then
+            CalculateVoltages()
+        End If
     End Sub
 
     Private Sub RMSRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles RMSRadioButton.CheckedChanged
-
+        If _continue = True Then
+            CalculateVoltages()
+        End If
     End Sub
 
     'extra subroutines----------------------------------

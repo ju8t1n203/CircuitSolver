@@ -60,10 +60,16 @@ Partial Class MainForm
         Me.CalculatedRGenLabel = New System.Windows.Forms.Label()
         Me.CalculatedVoutLabel = New System.Windows.Forms.Label()
         Me.CalculatedVinLabel = New System.Windows.Forms.Label()
+        Me.ClearButton = New System.Windows.Forms.Button()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
-        Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CalculateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.VGenFrequencyLabel = New System.Windows.Forms.Label()
         Me.VGenAmplitudeLabel = New System.Windows.Forms.Label()
@@ -79,8 +85,6 @@ Partial Class MainForm
         Me.DenotationGroupBox = New System.Windows.Forms.GroupBox()
         Me.RMSRadioButton = New System.Windows.Forms.RadioButton()
         Me.PeakRadioButton = New System.Windows.Forms.RadioButton()
-        Me.ClearButton = New System.Windows.Forms.Button()
-        Me.LogButton = New System.Windows.Forms.Button()
         Me.TestLabel = New System.Windows.Forms.Label()
         Me.ComponentValuesGroupBox.SuspendLayout()
         Me.CalculationsGroupBox.SuspendLayout()
@@ -92,9 +96,9 @@ Partial Class MainForm
         '
         'ExitButton
         '
-        Me.ExitButton.Location = New System.Drawing.Point(581, 440)
+        Me.ExitButton.Location = New System.Drawing.Point(581, 425)
         Me.ExitButton.Name = "ExitButton"
-        Me.ExitButton.Size = New System.Drawing.Size(216, 53)
+        Me.ExitButton.Size = New System.Drawing.Size(216, 70)
         Me.ExitButton.TabIndex = 7
         Me.ExitButton.Text = "E&xit"
         Me.ToolTip.SetToolTip(Me.ExitButton, "Closes the application")
@@ -339,9 +343,9 @@ Partial Class MainForm
         '
         'CalculateButton
         '
-        Me.CalculateButton.Location = New System.Drawing.Point(581, 271)
+        Me.CalculateButton.Location = New System.Drawing.Point(581, 273)
         Me.CalculateButton.Name = "CalculateButton"
-        Me.CalculateButton.Size = New System.Drawing.Size(216, 53)
+        Me.CalculateButton.Size = New System.Drawing.Size(216, 70)
         Me.CalculateButton.TabIndex = 1
         Me.CalculateButton.Text = "C&alculate"
         Me.ToolTip.SetToolTip(Me.CalculateButton, "Calculates the voltage, current and power of each component." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "All fields must be " &
@@ -365,7 +369,7 @@ Partial Class MainForm
         Me.CalculationsGroupBox.TabStop = False
         Me.CalculationsGroupBox.Text = "Calculated Values"
         Me.ToolTip.SetToolTip(Me.CalculationsGroupBox, "These are the calculated values based off the inputs." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "The labels will display as" &
-        ": Component: Voltage | Current | Power")
+        ": Component: Voltage | Power")
         '
         'CalculatedRwLabel
         '
@@ -439,32 +443,74 @@ Partial Class MainForm
         Me.CalculatedVinLabel.TabIndex = 0
         Me.CalculatedVinLabel.Text = "Vin:"
         '
+        'ClearButton
+        '
+        Me.ClearButton.Location = New System.Drawing.Point(581, 349)
+        Me.ClearButton.Name = "ClearButton"
+        Me.ClearButton.Size = New System.Drawing.Size(216, 70)
+        Me.ClearButton.TabIndex = 5
+        Me.ClearButton.Text = "&Clear"
+        Me.ToolTip.SetToolTip(Me.ClearButton, "Clears all inputs, labels and calculations.")
+        Me.ClearButton.UseVisualStyleBackColor = True
+        '
         'MenuStrip
         '
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TestToolStripMenuItem, Me.HelpToolStripMenuItem, Me.AboutToolStripMenuItem})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MenuToolStripMenuItem, Me.ViewToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(807, 25)
         Me.MenuStrip.TabIndex = 1
         Me.MenuStrip.Text = "MenuStrip1"
         '
-        'TestToolStripMenuItem
+        'MenuToolStripMenuItem
         '
-        Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
-        Me.TestToolStripMenuItem.Size = New System.Drawing.Size(44, 21)
-        Me.TestToolStripMenuItem.Text = "test"
+        Me.MenuToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalculateToolStripMenuItem, Me.ClearToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
+        Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(48, 21)
+        Me.MenuToolStripMenuItem.Text = "Menu"
+        '
+        'CalculateToolStripMenuItem
+        '
+        Me.CalculateToolStripMenuItem.Name = "CalculateToolStripMenuItem"
+        Me.CalculateToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CalculateToolStripMenuItem.Text = "Calculate"
+        '
+        'ClearToolStripMenuItem
+        '
+        Me.ClearToolStripMenuItem.Name = "ClearToolStripMenuItem"
+        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ClearToolStripMenuItem.Text = "Clear"
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExitToolStripMenuItem.Text = "Exit"
+        '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LogToolStripMenuItem, Me.TableToolStripMenuItem})
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(46, 21)
+        Me.ViewToolStripMenuItem.Text = "View"
+        '
+        'LogToolStripMenuItem
+        '
+        Me.LogToolStripMenuItem.Name = "LogToolStripMenuItem"
+        Me.LogToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.LogToolStripMenuItem.Text = "Log"
+        '
+        'TableToolStripMenuItem
+        '
+        Me.TableToolStripMenuItem.Name = "TableToolStripMenuItem"
+        Me.TableToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.TableToolStripMenuItem.Text = "Table Format"
         '
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(45, 21)
         Me.HelpToolStripMenuItem.Text = "Help"
-        '
-        'AboutToolStripMenuItem
-        '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(52, 21)
-        Me.AboutToolStripMenuItem.Text = "About"
         '
         'PictureBox1
         '
@@ -557,6 +603,7 @@ Partial Class MainForm
         Me.CoordinatesGroupBox.TabIndex = 3
         Me.CoordinatesGroupBox.TabStop = False
         Me.CoordinatesGroupBox.Text = "Coordinate Type"
+        Me.ToolTip.SetToolTip(Me.CoordinatesGroupBox, "Changes the calculated display label" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "to show the selected coordinate type.")
         '
         'PolarRadioButton
         '
@@ -590,6 +637,7 @@ Partial Class MainForm
         Me.DenotationGroupBox.TabIndex = 4
         Me.DenotationGroupBox.TabStop = False
         Me.DenotationGroupBox.Text = "Denotation"
+        Me.ToolTip.SetToolTip(Me.DenotationGroupBox, "Calculates in voltage peak or RMS voltage.")
         '
         'RMSRadioButton
         '
@@ -613,24 +661,6 @@ Partial Class MainForm
         Me.PeakRadioButton.Text = "Peak"
         Me.PeakRadioButton.UseVisualStyleBackColor = True
         '
-        'ClearButton
-        '
-        Me.ClearButton.Location = New System.Drawing.Point(581, 327)
-        Me.ClearButton.Name = "ClearButton"
-        Me.ClearButton.Size = New System.Drawing.Size(216, 53)
-        Me.ClearButton.TabIndex = 5
-        Me.ClearButton.Text = "&Clear"
-        Me.ClearButton.UseVisualStyleBackColor = True
-        '
-        'LogButton
-        '
-        Me.LogButton.Location = New System.Drawing.Point(581, 383)
-        Me.LogButton.Name = "LogButton"
-        Me.LogButton.Size = New System.Drawing.Size(216, 53)
-        Me.LogButton.TabIndex = 6
-        Me.LogButton.Text = "&View Log"
-        Me.LogButton.UseVisualStyleBackColor = True
-        '
         'TestLabel
         '
         Me.TestLabel.AutoSize = True
@@ -646,7 +676,6 @@ Partial Class MainForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(807, 501)
         Me.Controls.Add(Me.TestLabel)
-        Me.Controls.Add(Me.LogButton)
         Me.Controls.Add(Me.DenotationGroupBox)
         Me.Controls.Add(Me.CoordinatesGroupBox)
         Me.Controls.Add(Me.CalculationsGroupBox)
@@ -739,9 +768,13 @@ Partial Class MainForm
     Friend WithEvents RMSRadioButton As RadioButton
     Friend WithEvents PeakRadioButton As RadioButton
     Friend WithEvents ClearButton As Button
-    Friend WithEvents LogButton As Button
     Friend WithEvents TestLabel As Label
-    Friend WithEvents TestToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MenuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CalculateToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ClearToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LogToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TableToolStripMenuItem As ToolStripMenuItem
 End Class

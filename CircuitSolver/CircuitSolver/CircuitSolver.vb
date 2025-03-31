@@ -541,20 +541,28 @@ Public Class MainForm
         RwSchematicLabel.Text = $"{FormatEngineering(CDec(values(7, 2)))} Ω"
     End Sub
 
-    Private Sub TestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestToolStripMenuItem.Click
-
+    'menu event handlers------------------------------
+    Private Sub HelpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HelpToolStripMenuItem.Click
+        Dim filePath As String = IO.Path.Combine(Application.StartupPath, "..\Help.txt")
+        Process.Start(filePath)
     End Sub
 
-    'menu event handlers------------------------------
-    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+    Private Sub TableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TableToolStripMenuItem.Click
         'opens the about text file
         Dim filePath As String = IO.Path.Combine(Application.StartupPath, "..\About.txt")
         Process.Start(filePath)
     End Sub
 
-    Private Sub HelpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HelpToolStripMenuItem.Click
-        Dim filePath As String = IO.Path.Combine(Application.StartupPath, "..\Help.txt")
-        Process.Start(filePath)
+    Private Sub CalculateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CalculateToolStripMenuItem.Click
+        CalculateButton.PerformClick()
+    End Sub
+
+    Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
+        ClearButton.PerformClick()
+    End Sub
+
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Me.Close()
     End Sub
 
 End Class

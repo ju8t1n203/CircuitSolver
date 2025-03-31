@@ -588,4 +588,9 @@ Public Class MainForm
         Me.Close()
     End Sub
 
+    Private Sub LogToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogToolStripMenuItem.Click
+        'opens the log text file
+        Dim filePath As String = IO.Path.Combine(Application.StartupPath, "..\Log.txt")
+        Process.Start(filePath)
+    End Sub
 End Class

@@ -94,7 +94,7 @@ Partial Class MainForm
         '
         Me.ExitButton.Location = New System.Drawing.Point(581, 440)
         Me.ExitButton.Name = "ExitButton"
-        Me.ExitButton.Size = New System.Drawing.Size(206, 53)
+        Me.ExitButton.Size = New System.Drawing.Size(216, 53)
         Me.ExitButton.TabIndex = 7
         Me.ExitButton.Text = "E&xit"
         Me.ToolTip.SetToolTip(Me.ExitButton, "Closes the application")
@@ -128,7 +128,7 @@ Partial Class MainForm
         Me.ComponentValuesGroupBox.Controls.Add(Me.VGenAValueLabel)
         Me.ComponentValuesGroupBox.Location = New System.Drawing.Point(581, 27)
         Me.ComponentValuesGroupBox.Name = "ComponentValuesGroupBox"
-        Me.ComponentValuesGroupBox.Size = New System.Drawing.Size(206, 238)
+        Me.ComponentValuesGroupBox.Size = New System.Drawing.Size(214, 238)
         Me.ComponentValuesGroupBox.TabIndex = 0
         Me.ComponentValuesGroupBox.TabStop = False
         Me.ComponentValuesGroupBox.Text = "Component Values"
@@ -141,7 +141,7 @@ Partial Class MainForm
         Me.RGenNotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3"})
         Me.RGenNotationComboBox.Location = New System.Drawing.Point(145, 76)
         Me.RGenNotationComboBox.Name = "RGenNotationComboBox"
-        Me.RGenNotationComboBox.Size = New System.Drawing.Size(51, 21)
+        Me.RGenNotationComboBox.Size = New System.Drawing.Size(61, 21)
         Me.RGenNotationComboBox.TabIndex = 5
         '
         'RwNotationComboBox
@@ -150,7 +150,7 @@ Partial Class MainForm
         Me.RwNotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3"})
         Me.RwNotationComboBox.Location = New System.Drawing.Point(145, 207)
         Me.RwNotationComboBox.Name = "RwNotationComboBox"
-        Me.RwNotationComboBox.Size = New System.Drawing.Size(51, 21)
+        Me.RwNotationComboBox.Size = New System.Drawing.Size(61, 21)
         Me.RwNotationComboBox.TabIndex = 15
         '
         'R1NotationComboBox
@@ -159,7 +159,7 @@ Partial Class MainForm
         Me.R1NotationComboBox.Items.AddRange(New Object() {"x10^6", "x10^3", "x10^0"})
         Me.R1NotationComboBox.Location = New System.Drawing.Point(145, 102)
         Me.R1NotationComboBox.Name = "R1NotationComboBox"
-        Me.R1NotationComboBox.Size = New System.Drawing.Size(51, 21)
+        Me.R1NotationComboBox.Size = New System.Drawing.Size(61, 21)
         Me.R1NotationComboBox.TabIndex = 7
         '
         'L1NotationComboBox
@@ -168,7 +168,7 @@ Partial Class MainForm
         Me.L1NotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3", "x10^-6", "x10^-9", "x10^-12"})
         Me.L1NotationComboBox.Location = New System.Drawing.Point(145, 180)
         Me.L1NotationComboBox.Name = "L1NotationComboBox"
-        Me.L1NotationComboBox.Size = New System.Drawing.Size(51, 21)
+        Me.L1NotationComboBox.Size = New System.Drawing.Size(61, 21)
         Me.L1NotationComboBox.TabIndex = 13
         '
         'C2NotationComboBox
@@ -177,7 +177,7 @@ Partial Class MainForm
         Me.C2NotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3", "x10^-6", "x10^-9", "x10^-12"})
         Me.C2NotationComboBox.Location = New System.Drawing.Point(145, 155)
         Me.C2NotationComboBox.Name = "C2NotationComboBox"
-        Me.C2NotationComboBox.Size = New System.Drawing.Size(51, 21)
+        Me.C2NotationComboBox.Size = New System.Drawing.Size(61, 21)
         Me.C2NotationComboBox.TabIndex = 11
         '
         'C1NotationComboBox
@@ -186,7 +186,7 @@ Partial Class MainForm
         Me.C1NotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3", "x10^-6", "x10^-9", "x10^-12"})
         Me.C1NotationComboBox.Location = New System.Drawing.Point(145, 129)
         Me.C1NotationComboBox.Name = "C1NotationComboBox"
-        Me.C1NotationComboBox.Size = New System.Drawing.Size(51, 21)
+        Me.C1NotationComboBox.Size = New System.Drawing.Size(61, 21)
         Me.C1NotationComboBox.TabIndex = 9
         '
         'VGenFNotationComboBox
@@ -195,7 +195,7 @@ Partial Class MainForm
         Me.VGenFNotationComboBox.Items.AddRange(New Object() {"x10^9", "x10^6", "x10^3", "x10^0", "x10^-3"})
         Me.VGenFNotationComboBox.Location = New System.Drawing.Point(145, 52)
         Me.VGenFNotationComboBox.Name = "VGenFNotationComboBox"
-        Me.VGenFNotationComboBox.Size = New System.Drawing.Size(51, 21)
+        Me.VGenFNotationComboBox.Size = New System.Drawing.Size(61, 21)
         Me.VGenFNotationComboBox.TabIndex = 3
         '
         'VGenANotationComboBox
@@ -204,7 +204,7 @@ Partial Class MainForm
         Me.VGenANotationComboBox.Items.AddRange(New Object() {"x10^0", "x10^-3"})
         Me.VGenANotationComboBox.Location = New System.Drawing.Point(145, 26)
         Me.VGenANotationComboBox.Name = "VGenANotationComboBox"
-        Me.VGenANotationComboBox.Size = New System.Drawing.Size(51, 21)
+        Me.VGenANotationComboBox.Size = New System.Drawing.Size(61, 21)
         Me.VGenANotationComboBox.TabIndex = 1
         '
         'RwValueTextBox
@@ -341,7 +341,7 @@ Partial Class MainForm
         '
         Me.CalculateButton.Location = New System.Drawing.Point(581, 271)
         Me.CalculateButton.Name = "CalculateButton"
-        Me.CalculateButton.Size = New System.Drawing.Size(206, 53)
+        Me.CalculateButton.Size = New System.Drawing.Size(216, 53)
         Me.CalculateButton.TabIndex = 1
         Me.CalculateButton.Text = "C&alculate"
         Me.ToolTip.SetToolTip(Me.CalculateButton, "Calculates the voltage, current and power of each component." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "All fields must be " &
@@ -444,7 +444,7 @@ Partial Class MainForm
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TestToolStripMenuItem, Me.HelpToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
-        Me.MenuStrip.Size = New System.Drawing.Size(796, 25)
+        Me.MenuStrip.Size = New System.Drawing.Size(807, 25)
         Me.MenuStrip.TabIndex = 1
         Me.MenuStrip.Text = "MenuStrip1"
         '
@@ -617,7 +617,7 @@ Partial Class MainForm
         '
         Me.ClearButton.Location = New System.Drawing.Point(581, 327)
         Me.ClearButton.Name = "ClearButton"
-        Me.ClearButton.Size = New System.Drawing.Size(206, 53)
+        Me.ClearButton.Size = New System.Drawing.Size(216, 53)
         Me.ClearButton.TabIndex = 5
         Me.ClearButton.Text = "&Clear"
         Me.ClearButton.UseVisualStyleBackColor = True
@@ -626,7 +626,7 @@ Partial Class MainForm
         '
         Me.LogButton.Location = New System.Drawing.Point(581, 383)
         Me.LogButton.Name = "LogButton"
-        Me.LogButton.Size = New System.Drawing.Size(206, 53)
+        Me.LogButton.Size = New System.Drawing.Size(216, 53)
         Me.LogButton.TabIndex = 6
         Me.LogButton.Text = "&View Log"
         Me.LogButton.UseVisualStyleBackColor = True
@@ -644,7 +644,7 @@ Partial Class MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(796, 501)
+        Me.ClientSize = New System.Drawing.Size(807, 501)
         Me.Controls.Add(Me.TestLabel)
         Me.Controls.Add(Me.LogButton)
         Me.Controls.Add(Me.DenotationGroupBox)

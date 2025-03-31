@@ -312,7 +312,7 @@ Public Class MainForm
         End If
 
         Try
-            _string = $"Voltage: {FormatEngineering(CDbl(values(item, v1)))}V {s1} {FormatEngineering(CDbl(values(item, v2)))} {s2} | Power: {FormatEngineering(CDbl(values(item, p1)))} W {s1} {FormatEngineering(CDbl(values(item, p2)))} {s2}"
+            _string = $"Voltage: {FormatEngineering(CDec(values(item, v1)))}V {s1} {FormatEngineering(CDec(values(item, v2)))} {s2} | Power: {FormatEngineering(CDec(values(item, p1)))} W {s1} {FormatEngineering(CDec(values(item, p2)))} {s2}"
         Catch ex As Exception
             _string = "no worky"
         End Try
@@ -324,30 +324,30 @@ Public Class MainForm
 
         If PeakRadioButton.Checked = True Then
             'peak current in polar
-            values(8, 7) = CStr(CDbl(values(0, 2)) / CDbl(values(8, 0)))
-            values(8, 8) = CStr(CDbl(values(8, 1)) * -1)
+            values(8, 7) = CStr(CDec(values(0, 2)) / CDec(values(8, 0)))
+            values(8, 8) = CStr(CDec(values(8, 1)) * -1)
         Else
             'rms current in polar
-            values(8, 7) = CStr(0.707 * CDbl(values(0, 2)) / CDbl(values(8, 0)))
-            values(8, 8) = CStr(CDbl(values(8, 1)) * -1)
+            values(8, 7) = CStr(0.707 * CDec(values(0, 2)) / CDec(values(8, 0)))
+            values(8, 8) = CStr(CDec(values(8, 1)) * -1)
         End If
         'total power in polar
-        values(0, 9) = CStr(CDbl(values(8, 7)) * CDbl(values(0, 2)))
+        values(0, 9) = CStr(CDec(values(8, 7)) * CDec(values(0, 2)))
         values(0, 10) = values(8, 8)
 
         'voltage of vin
         Rect2Pol((CDec(values(8, 2)) - CDec(values(2, 2))), (CDec(values(8, 3))))
 
-        values(10, 3) = CStr(CDbl(values(9, 0)) * CDbl(values(8, 7)))
-        values(10, 4) = CStr(CDbl(values(9, 1)) + CDbl(values(8, 8)))
+        values(10, 3) = CStr(CDec(values(9, 0)) * CDec(values(8, 7)))
+        values(10, 4) = CStr(CDec(values(9, 1)) + CDec(values(8, 8)))
 
         Pol2Rect(CDec(values(10, 3)), CDec(values(10, 4)))
         values(10, 5) = values(9, 2)
         values(10, 6) = values(9, 3)
 
         'power of vin
-        values(10, 7) = CStr(CDbl(values(10, 3)) * CDbl(values(8, 7)))
-        values(10, 8) = CStr(CDbl(values(10, 4)) + CDbl(values(8, 8)))
+        values(10, 7) = CStr(CDec(values(10, 3)) * CDec(values(8, 7)))
+        values(10, 8) = CStr(CDec(values(10, 4)) + CDec(values(8, 8)))
 
         Pol2Rect((CDec(values(10, 7))), (CDec(values(10, 8))))
         values(10, 9) = values(9, 2)
@@ -356,14 +356,14 @@ Public Class MainForm
         CalculatedVinLabel.Text = $"Vin: {MakeString(10)}"
 
         'voltage of RGen
-        values(2, 3) = $"{CDbl(values(2, 2)) * CDbl(values(8, 7))}"
+        values(2, 3) = $"{CDec(values(2, 2)) * CDec(values(8, 7))}"
         values(2, 4) = values(8, 8)
         Pol2Rect((CDec(values(2, 3))), (CDec(values(2, 4))))
         values(2, 5) = values(9, 2)
         values(2, 6) = values(9, 3)
 
         'power of RGen
-        values(2, 7) = $"{CDbl(values(2, 3)) * CDbl(values(8, 7))}"
+        values(2, 7) = $"{CDec(values(2, 3)) * CDec(values(8, 7))}"
         values(2, 8) = values(8, 8)
         Pol2Rect((CDec(values(2, 7))), (CDec(values(2, 8))))
         values(2, 9) = values(9, 2)
@@ -372,14 +372,14 @@ Public Class MainForm
         CalculatedRGenLabel.Text = $"RGen: {MakeString(2)}"
 
         'voltage of R1
-        values(3, 3) = $"{CDbl(values(3, 2)) * CDbl(values(8, 7))}"
+        values(3, 3) = $"{CDec(values(3, 2)) * CDec(values(8, 7))}"
         values(3, 4) = values(8, 8)
         Pol2Rect((CDec(values(3, 3))), (CDec(values(3, 4))))
         values(3, 5) = values(9, 2)
         values(3, 6) = values(9, 3)
 
         'power of R1
-        values(3, 7) = $"{CDbl(values(3, 3)) * CDbl(values(8, 7))}"
+        values(3, 7) = $"{CDec(values(3, 3)) * CDec(values(8, 7))}"
         values(3, 8) = values(8, 8)
         Pol2Rect((CDec(values(3, 7))), (CDec(values(3, 8))))
         values(3, 9) = values(9, 2)
@@ -388,14 +388,14 @@ Public Class MainForm
         CalculatedR1Label.Text = $"R1: {MakeString(3)}"
 
         'voltage of C1
-        values(4, 3) = $"{CDbl(values(8, 4)) * CDbl(values(8, 7))}"
+        values(4, 3) = $"{CDec(values(8, 4)) * CDec(values(8, 7))}"
         values(4, 4) = $"{CDec(values(8, 8)) - 90}"
         Pol2Rect((CDec(values(4, 3))), (CDec(values(4, 4))))
         values(4, 5) = values(9, 2)
         values(4, 6) = values(9, 3)
 
         'power of C1
-        values(4, 7) = $"{CDbl(values(4, 3)) * CDbl(values(8, 7))}"
+        values(4, 7) = $"{CDec(values(4, 3)) * CDec(values(8, 7))}"
         values(4, 8) = $"{CDec(values(8, 8)) - 90}"
         Pol2Rect((CDec(values(4, 7))), (CDec(values(4, 8))))
         values(4, 9) = values(9, 2)
@@ -433,6 +433,7 @@ Public Class MainForm
 
         CalculatedC2Label.Text = $"C2: {MakeString(5)}"
 
+        TestLabel.Text = $""
 
     End Sub
 
@@ -495,14 +496,14 @@ Public Class MainForm
 
     'extra subroutines----------------------------------
     Sub SetSchematicLabels()
-        VGenAmplitudeLabel.Text = $"{FormatEngineering(CDbl(values(0, 2)))} Vp"
-        VGenFrequencyLabel.Text = $"{FormatEngineering(CDbl(values(1, 2)))} Hz"
-        RGenSchematicLabel.Text = $"{FormatEngineering(CDbl(values(2, 2)))} Ω"
-        R1SchematicLabel.Text = $"{FormatEngineering(CDbl(values(3, 2)))} Ω"
-        C1SchematicLabel.Text = $"{FormatEngineering(CDbl(values(4, 2)))} F"
-        C2SchematicLabel.Text = $"{FormatEngineering(CDbl(values(5, 2)))} F"
-        L1SchematicLabel.Text = $"{FormatEngineering(CDbl(values(6, 2)))} H"
-        RwSchematicLabel.Text = $"{FormatEngineering(CDbl(values(7, 2)))} Ω"
+        VGenAmplitudeLabel.Text = $"{FormatEngineering(CDec(values(0, 2)))} Vp"
+        VGenFrequencyLabel.Text = $"{FormatEngineering(CDec(values(1, 2)))} Hz"
+        RGenSchematicLabel.Text = $"{FormatEngineering(CDec(values(2, 2)))} Ω"
+        R1SchematicLabel.Text = $"{FormatEngineering(CDec(values(3, 2)))} Ω"
+        C1SchematicLabel.Text = $"{FormatEngineering(CDec(values(4, 2)))} F"
+        C2SchematicLabel.Text = $"{FormatEngineering(CDec(values(5, 2)))} F"
+        L1SchematicLabel.Text = $"{FormatEngineering(CDec(values(6, 2)))} H"
+        RwSchematicLabel.Text = $"{FormatEngineering(CDec(values(7, 2)))} Ω"
     End Sub
 
     Private Sub TestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestToolStripMenuItem.Click

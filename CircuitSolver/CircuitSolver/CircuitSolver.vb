@@ -47,6 +47,11 @@ Public Class MainForm
         L1NotationComboBox.ResetText()
         RwValueTextBox.ResetText()
         RwNotationComboBox.ResetText()
+        'radio buttons-------------------------------------------
+        PolarRadioButton.Checked = True
+        RectangularRadioButton.Checked = False
+        PeakRadioButton.Checked = True
+        RMSRadioButton.Checked = False
         'schematic labels---------------------------------------
         VGenAmplitudeLabel.Text = "~Vp"
         VGenFrequencyLabel.Text = "~Hz"
@@ -65,11 +70,6 @@ Public Class MainForm
         CalculatedC2Label.Text = "C2:"
         CalculatedL1Label.Text = "L1:"
         CalculatedRwLabel.Text = "Rw:"
-        'radio buttons-------------------------------------------
-        PolarRadioButton.Checked = True
-        RectangularRadioButton.Checked = False
-        PeakRadioButton.Checked = True
-        RMSRadioButton.Checked = False
     End Sub
 
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
@@ -434,7 +434,41 @@ Public Class MainForm
 
         CalculatedC2Label.Text = $"C2: {MakeString(5)}"
 
-        TestLabel.Text = $""
+        'current for L1 & Rw (IB2)
+        values(9, 9) = $"{CDec(values(11, 3)) / (CDec(values(6, 2)) + CDec(values(7, 2)))}"
+        values(9, 10) = $"{CDec(values(11, 4)) - 90}"
+
+        'voltage for L1
+        values(6, 3) = $"{CDec(values(6, 2)) * CDec(values(9, 9))}"
+        values(6, 4) = $"{CDec(values(9, 10)) + 90}"
+        Pol2Rect((CDec(values(6, 3))), (CDec(values(6, 4))))
+        values(6, 5) = values(9, 2)
+        values(6, 6) = values(9, 3)
+
+        'power for L1
+        values(6, 7) = $"{CDec(values(6, 3)) * CDec(values(9, 9))}"
+        values(6, 8) = $"{CDec(values(6, 4)) + CDec(values(9, 10))}"
+        Pol2Rect((CDec(values(6, 7))), (CDec(values(6, 8))))
+        values(6, 9) = values(9, 2)
+        values(6, 10) = values(9, 3)
+
+        CalculatedL1Label.Text = $"L1: {MakeString(6)}"
+
+        'voltage for Rw
+        values(7, 3) = $"{CDec(values(7, 2)) * CDec(values(9, 9))}"
+        values(7, 4) = values(9, 10)
+        Pol2Rect((CDec(values(7, 3))), (CDec(values(7, 4))))
+        values(7, 5) = values(9, 2)
+        values(7, 6) = values(9, 3)
+
+        'power for Rw
+        values(7, 7) = $"{CDec(values(7, 3)) * CDec(values(9, 9))}"
+        values(7, 8) = $"{CDec(values(7, 4)) + CDec(values(9, 10))}"
+        Pol2Rect((CDec(values(7, 7))), (CDec(values(7, 8))))
+        values(7, 9) = values(9, 2)
+        values(7, 10) = values(9, 3)
+
+        CalculatedRwLabel.Text = $"Rw: {MakeString(7)}"
 
     End Sub
 

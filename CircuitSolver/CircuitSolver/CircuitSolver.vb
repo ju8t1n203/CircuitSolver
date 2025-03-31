@@ -402,7 +402,38 @@ Public Class MainForm
         values(4, 10) = values(9, 3)
 
         CalculatedC1Label.Text = $"C1: {MakeString(4)}"
-        TestLabel.Text = values(8, 4)
+
+        'voltage of Vout
+        values(11, 3) = $"{10 - CDec(values(3, 5)) - CDec(values(4, 5))}"
+        values(11, 4) = $"{CDec(values(3, 6)) - CDec(values(4, 6))}"
+        Pol2Rect((CDec(values(11, 3))), (CDec(values(11, 4))))
+        values(11, 5) = values(9, 2)
+        values(11, 6) = values(9, 3)
+
+        'power of Vout
+
+        Pol2Rect((CDec(values(11, 7))), (CDec(values(11, 8))))
+        values(11, 9) = values(9, 2)
+        values(11, 10) = values(9, 3)
+
+        CalculatedVoutLabel.Text = $"Vout: {MakeString(11)}"
+
+        'voltage of C2
+        values(5, 3) = values(11, 3)
+        values(5, 4) = values(11, 4)
+        values(5, 5) = values(11, 5)
+        values(5, 6) = values(11, 6)
+
+        'power of C2
+        values(5, 7) = $"{(CDec(values(5, 3)) * CDec(values(5, 3))) / CDec(values(8, 5))}"
+        values(5, 8) = $"{CDec(values(5, 4)) + CDec(values(5, 4)) + 90}"
+        Pol2Rect((CDec(values(5, 7))), (CDec(values(5, 8))))
+        values(5, 9) = values(9, 2)
+        values(5, 10) = values(9, 3)
+
+        CalculatedC2Label.Text = $"C2: {MakeString(5)}"
+
+
     End Sub
 
     'conversions-------------------------------------------
@@ -439,14 +470,12 @@ Public Class MainForm
 
     'display options---------------------------------------
     Private Sub PolarRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles PolarRadioButton.CheckedChanged
-        TestLabel.Text = $"ZTotal = {FormatEngineering(CDbl(values(8, 0)))} ∟ {FormatEngineering(CDbl(values(8, 1)))} °"
         If _continue = True Then
             CalculateVoltages()
         End If
     End Sub
 
     Private Sub RectangularRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles RectangularRadioButton.CheckedChanged
-        TestLabel.Text = $"ZTotal = {FormatEngineering(CDbl(values(8, 2)))} + {FormatEngineering(CDbl(values(8, 3)))} i"
         If _continue = True Then
             CalculateVoltages()
         End If

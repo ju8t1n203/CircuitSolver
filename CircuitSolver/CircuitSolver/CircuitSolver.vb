@@ -11,12 +11,6 @@ Imports System.Globalization
 Imports System.IO
 Imports System.Math
 
-'TODO
-' [ ] calculate voltages
-' [ ] calculate powers
-' [ ] coordinate radio button functionality
-' [ ] denotation radio button functionality
-
 Public Class MainForm
     Private _continue As Boolean
     Private values(11, 10) As String      'refer to the "About" in the menu strip for array content layout

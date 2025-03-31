@@ -8,6 +8,7 @@ Option Explicit On
 Option Strict On
 
 Imports System.Globalization
+Imports System.IO
 Imports System.Math
 
 'TODO
@@ -87,6 +88,7 @@ Public Class MainForm
             SetSchematicLabels()
             CalculateZTotal()
             CalculateVoltages()
+            CreateLogAppendix()
         End If
 
     End Sub
@@ -539,6 +541,27 @@ Public Class MainForm
         C2SchematicLabel.Text = $"{FormatEngineering(CDec(values(5, 2)))} F"
         L1SchematicLabel.Text = $"{FormatEngineering(CDec(values(6, 2)))} H"
         RwSchematicLabel.Text = $"{FormatEngineering(CDec(values(7, 2)))} Ω"
+    End Sub
+
+    Sub CreateLogAppendix()
+        Using writer As StreamWriter = File.AppendText("..\Log.txt")
+            writer.WriteLine(StrDup(80, "-"))
+            writer.WriteLine("Values are presented as RMS in polar coordinates.")
+            writer.WriteLine($"VGen: {FormatEngineering(CDbl(values(0, 2)))}V @ {FormatEngineering(CDbl(values(1, 2)))}Hz")
+            writer.WriteLine($"ZTotal: {FormatEngineering(CDbl(values(8, 0)))}Ω {FormatEngineering(CDbl(values(8, 1)))}°")
+            writer.WriteLine($"Vin: {FormatEngineering(CDbl(values(10, 3)))} V {FormatEngineering(CDbl(values(10, 4)))}°")
+            writer.WriteLine($"Pin: {FormatEngineering(CDbl(values(10, 7)))}W {FormatEngineering(CDbl(values(10, 8)))}°")
+            writer.WriteLine($"Vout: {FormatEngineering(CDbl(values(11, 3)))}V {FormatEngineering(CDbl(values(11, 4)))}°")
+            writer.WriteLine($"Pout: {FormatEngineering(CDbl(values(11, 7)))}W {FormatEngineering(CDbl(values(11, 8)))}°")
+            writer.WriteLine($"RGen: Voltage:{FormatEngineering(CDbl(values(2, 3)))}V {FormatEngineering(CDbl(values(2, 4)))}°   |   Power:{FormatEngineering(CDbl(values(2, 7)))}W {FormatEngineering(CDbl(values(2, 8)))}°")
+            writer.WriteLine($"R1: Voltage:{FormatEngineering(CDbl(values(3, 3)))}V {FormatEngineering(CDbl(values(3, 4)))}°   |   Power:{FormatEngineering(CDbl(values(3, 7)))}W {FormatEngineering(CDbl(values(3, 8)))}°")
+            writer.WriteLine($"C1: Voltage:{FormatEngineering(CDbl(values(4, 3)))}V {FormatEngineering(CDbl(values(4, 4)))}°   |   Power:{FormatEngineering(CDbl(values(4, 7)))}W {FormatEngineering(CDbl(values(4, 8)))}°")
+            writer.WriteLine($"C2: Voltage:{FormatEngineering(CDbl(values(5, 3)))}V {FormatEngineering(CDbl(values(5, 4)))}°   |   Power:{FormatEngineering(CDbl(values(5, 7)))}W {FormatEngineering(CDbl(values(5, 8)))}°")
+            writer.WriteLine($"L1: Voltage:{FormatEngineering(CDbl(values(6, 3)))}V {FormatEngineering(CDbl(values(6, 4)))}°   |   Power:{FormatEngineering(CDbl(values(6, 7)))}W {FormatEngineering(CDbl(values(6, 8)))}°")
+            writer.WriteLine($"Rw: Voltage:{FormatEngineering(CDbl(values(7, 3)))}V {FormatEngineering(CDbl(values(7, 4)))}°   |   Power:{FormatEngineering(CDbl(values(7, 7)))}W {FormatEngineering(CDbl(values(7, 8)))}°")
+            writer.WriteLine(DateTime.Now.ToString)
+            writer.WriteLine(StrDup(80, "-"))
+        End Using
     End Sub
 
     'menu event handlers------------------------------

@@ -256,8 +256,11 @@ Public Class MainForm
         Dim zTY As Decimal
 
         xC1 = CDec(1 / (2 * 3.1415 * CDec(values(1, 2)) * CDec(values(4, 2))))
+        values(8, 4) = CStr(xC1)
         xC2 = CDec(1 / (2 * 3.1415 * CDec(values(1, 2)) * CDec(values(5, 2))))
+        values(8, 5) = CStr(xC2)
         xL1 = CDec(2 * 3.1415 * CDec(values(1, 2)) * CDec(values(6, 2)))
+        values(8, 6) = CStr(xL1)
         zBX = CDec(values(7, 2))
         zBY = xL1
         zSX = CDec(values(2, 2)) + CDec(values(3, 2))
@@ -354,7 +357,7 @@ Public Class MainForm
 
         'voltage of RGen
         values(2, 3) = $"{CDbl(values(2, 2)) * CDbl(values(8, 7))}"
-        values(2, 4) = $"{values(8, 8)}"
+        values(2, 4) = values(8, 8)
         Pol2Rect((CDec(values(2, 3))), (CDec(values(2, 4))))
         values(2, 5) = values(9, 2)
         values(2, 6) = values(9, 3)
@@ -364,10 +367,42 @@ Public Class MainForm
         values(2, 8) = values(8, 8)
         Pol2Rect((CDec(values(2, 7))), (CDec(values(2, 8))))
         values(2, 9) = values(9, 2)
-        values(2, 10) = values(9, 2)
+        values(2, 10) = values(9, 3)
 
-        CalculatedRwLabel.Text = $"RGen: {MakeString(2)}"
+        CalculatedRGenLabel.Text = $"RGen: {MakeString(2)}"
 
+        'voltage of R1
+        values(3, 3) = $"{CDbl(values(3, 2)) * CDbl(values(8, 7))}"
+        values(3, 4) = values(8, 8)
+        Pol2Rect((CDec(values(3, 3))), (CDec(values(3, 4))))
+        values(3, 5) = values(9, 2)
+        values(3, 6) = values(9, 3)
+
+        'power of R1
+        values(3, 7) = $"{CDbl(values(3, 3)) * CDbl(values(8, 7))}"
+        values(3, 8) = values(8, 8)
+        Pol2Rect((CDec(values(3, 7))), (CDec(values(3, 8))))
+        values(3, 9) = values(9, 2)
+        values(3, 10) = values(9, 3)
+
+        CalculatedR1Label.Text = $"R1: {MakeString(3)}"
+
+        'voltage of C1
+        values(4, 3) = $"{CDbl(values(8, 4)) * CDbl(values(8, 7))}"
+        values(4, 4) = $"{CDec(values(8, 8)) - 90}"
+        Pol2Rect((CDec(values(4, 3))), (CDec(values(4, 4))))
+        values(4, 5) = values(9, 2)
+        values(4, 6) = values(9, 3)
+
+        'power of C1
+        values(4, 7) = $"{CDbl(values(4, 3)) * CDbl(values(8, 7))}"
+        values(4, 8) = $"{CDec(values(8, 8)) - 90}"
+        Pol2Rect((CDec(values(4, 7))), (CDec(values(4, 8))))
+        values(4, 9) = values(9, 2)
+        values(4, 10) = values(9, 3)
+
+        CalculatedC1Label.Text = $"C1: {MakeString(4)}"
+        TestLabel.Text = values(8, 4)
     End Sub
 
     'conversions-------------------------------------------
